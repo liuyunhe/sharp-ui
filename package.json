@@ -1,5 +1,8 @@
 {
   "name": "sharpui",
+  "description": "SharpUI is a UI library based on Vue3.",
+  "author": "sharpui team",
+  "license": "MIT",
   "version": "0.0.0",
   "private": true,
   "type": "module",
