@@ -1,0 +1,73 @@
+:root {
+  /* colors */
+  --s-color-white: #ffffff;
+  --s-color-black: #000000;
+  --colors: (
+    primary: #409eff,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399
+  );
+
+  @each $val, $color in var(--colors) {
+    --s-color-$(val): $(color);
+    @for $i from 3 to 9 by 2 {
+      --s-color-$(val)-light-$(i): mix(#fff, $(color), .$(i))
+    }
+    --s-color-$(val)-light-8: mix(#fff, $(color), .8);
+    --s-color-$(val)-dark-2: mix(#000, $(color), .2);
+  }
+
+  --s-bg-color: #ffffff;
+  --s-bg-color-page: #f2f3f5;
+  --s-bg-color-overlay: #ffffff;
+  --s-text-color-primary: #303133;
+  --s-text-color-regular: #606266;
+  --s-text-color-secondary: #909399;
+  --s-text-color-placeholder: #a8abb2;
+  --s-text-color-disabled: #c0c4cc;
+  --s-border-color: #dcdfe6;
+  --s-border-color-light: #e4e7ed;
+  --s-border-color-lighter: #ebeef5;
+  --s-border-color-extra-light: #f2f6fc;
+  --s-border-color-dark: #d4d7de;
+  --s-border-color-darker: #cdd0d6;
+  --s-fill-color: #f0f2f5;
+  --s-fill-color-light: #f5f7fa;
+  --s-fill-color-lighter: #fafafa;
+  --s-fill-color-extra-light: #fafcff;
+  --s-fill-color-dark: #ebedf0;
+  --s-fill-color-darker: #e6e8eb;
+  --s-fill-color-blank: #ffffff;
+
+  /* border */
+  --s-border-width: 1px;
+  --s-border-style: solid;
+  --s-border-color-hover: var(--s-text-color-disabled);
+  --s-border: var(--s-border-width) var(--s-border-style) var(--s-border-color);
+  --s-border-radius-base: 4px;
+  --s-border-radius-small: 2px;
+  --s-border-radius-round: 20px;
+  --s-border-radius-circle: 100%;
+
+  /*font*/
+  --s-font-size-extra-large: 20px;
+  --s-font-size-large: 18px;
+  --s-font-size-medium: 16px;
+  --s-font-size-base: 14px;
+  --s-font-size-small: 13px;
+  --s-font-size-extra-small: 12px;
+  --s-font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", Arial, sans-serif;
+  --s-font-weight-primary: 500;
+
+  /*disabled*/
+  --s-disabled-bg-color: var(--s-fill-color-light);
+  --s-disabled-text-color: var(--s-text-color-placeholder);
+  --s-disabled-border-color: var(--s-border-color-light);
+  
+  /*animation*/
+  --s-transition-duration: .3s;
+  --s-transition-duration-fast: .2s;
+
+}
