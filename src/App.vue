@@ -1,21 +1,26 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <Button ref="buttonRef" type="primary" plain disabled>Test Button</Button>
   </main>
 </template>
+
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import Button from '@/components/Button/Button.vue'
+import type { ButtonInstance } from './components/Button/types'
+
+const buttonRef = ref<ButtonInstance | null>(null)
+onMounted(() => {
+  if(buttonRef.value) {
+   console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
+   console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
+  }
+})
+</script>
 
 <style scoped>
 header {
