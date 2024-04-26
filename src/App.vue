@@ -4,7 +4,7 @@
   </header>
 
   <main>
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 20px">
       <Button>默认按钮</Button>
       <Button type="primary">主要按钮</Button>
       <Button type="success">成功按钮</Button>
@@ -12,7 +12,7 @@
       <Button type="warning">警告按钮</Button>
       <Button type="danger">危险按钮</Button>
     </div>
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 20px">
       <Button plain>朴素按钮</Button>
       <Button type="primary" plain>主要按钮</Button>
       <Button type="success" plain>成功按钮</Button>
@@ -20,7 +20,7 @@
       <Button type="warning" plain>警告按钮</Button>
       <Button type="danger" plain>危险按钮</Button>
     </div>
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 20px">
       <Button round>圆角按钮</Button>
       <Button type="primary" round>主要按钮</Button>
       <Button type="success" round>成功按钮</Button>
@@ -28,15 +28,38 @@
       <Button type="warning" round>警告按钮</Button>
       <Button type="danger" round>危险按钮</Button>
     </div>
+    <div style="margin-bottom: 20px">
+      <Collapse v-model="openedValue" accordion>
+        <CollapseItem name="a">
+          <template #title>
+            <h1>Title A</h1>
+          </template>
+          <h1>headline title</h1>
+          <div>this is content a aaa</div>
+        </CollapseItem>
+        <CollapseItem name="b" title="Title B">
+          <div>this is bbbbb test</div>
+        </CollapseItem>
+        <CollapseItem name="c" title="Disabled Title" disabled>
+          <div>this is cccc test</div>
+        </CollapseItem>
+      </Collapse>
+      {{  openedValue  }}
+    </div>
   </main>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import Button from '@/components/Button/Button.vue'
+import Collapse from '@/components/Collapse/Collapse.vue'
+import CollapseItem from '@/components/Collapse/CollapseItem.vue'
 import type { ButtonInstance } from './components/Button/types'
 
 const buttonRef = ref<ButtonInstance | null>(null)
+
+const openedValue = ref(['a'])
+
 onMounted(() => {
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
