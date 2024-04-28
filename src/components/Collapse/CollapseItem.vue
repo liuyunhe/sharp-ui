@@ -17,6 +17,7 @@
       <slot name="title">
         {{ title }}
       </slot>
+       <Icon icon="angle-right" class="header-angle" />
     </div>
     <Transition name="slide" v-on="transitionEvants">
       <div class="s-collapse-item__wrapper" v-show="isActive">
@@ -31,6 +32,7 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue'
 import { collapseContextKey, type CollapseItemProps } from './types'
+import Icon from '../Icon/Icon.vue'
 defineOptions({
   name: 'S-CollapseItem'
 })
