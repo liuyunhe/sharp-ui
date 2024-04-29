@@ -6,9 +6,9 @@
   <main>
     <div style="margin-bottom: 20px">
       <Button>默认按钮</Button>
-      <Button type="primary" loading>主要按钮</Button>
+      <Button type="primary">主要按钮</Button>
       <Button type="success">成功按钮</Button>
-      <Button type="info" size="small">信息按钮</Button>
+      <Button type="info">信息按钮</Button>
       <Button type="warning">警告按钮</Button>
       <Button type="danger">危险按钮</Button>
     </div>
@@ -27,6 +27,12 @@
       <Button type="info" round>信息按钮</Button>
       <Button type="warning" round>警告按钮</Button>
       <Button type="danger" round>危险按钮</Button>
+    </div>
+    <div style="margin-bottom: 20px">
+      <Button size="small">small</Button>
+      <Button type="primary" size="large">large</Button>
+      <Button type="success" disabled>成功按钮</Button>
+      <Button type="info" loading>信息按钮</Button>
     </div>
     <div style="margin-bottom: 20px">
       <Collapse v-model="openedValue" accordion>
