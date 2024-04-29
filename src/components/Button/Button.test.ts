@@ -4,8 +4,11 @@ import Button from './Button.vue'
 import Icon from '@/components/Icon/Icon.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+// 描述Button.vue组件的测试用例
 describe('Button.vue', () => {
+  // 测试基础按钮渲染和功能
   test('basic button', () => {
+    // 挂载Button组件，传入一系列props和slots
     const wrapper = mount(Button, {
       props: {
         type: 'primary',
