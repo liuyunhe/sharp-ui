@@ -61,7 +61,7 @@ describe('Button.vue', () => {
     expect(wrapper.emitted()).not.toHaveProperty('click')
   })
 
-  // 测试按钮中包含图标
+  // 测试按钮中包含的图标
   test('icon', () => {
     const wrapper = mount(Button, {
       props: {
