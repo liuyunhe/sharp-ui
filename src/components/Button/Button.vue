@@ -11,7 +11,7 @@
       'is-disabled': disabled,
       'is-loading': loading
     }"
-    :disabled="disabled"
+    :disabled="disabled || loading"
     :autofocus="autofocus"
     :type="nativeType"
   >
