@@ -85,7 +85,6 @@ onMounted(() => {
   setTimeout(() => {
     openedValue.value = ['a', 'b']
     size.value = '2xl'
-    trigger.value = 'hover'
   }, 2000)
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="s-tooltip" v-on="outerEvents">
+  <div class="s-tooltip" ref="popperContainerNode" v-on="outerEvents">
     <div class="s-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>
@@ -14,6 +14,7 @@ import { reactive, ref, watch } from 'vue'
 import type { Instance as PopperInstance } from '@popperjs/core'
 import  { createPopper } from '@popperjs/core'
 import type { TooltipEmits, TooltipProps } from './types'
+import useClickOutside from '@/hooks/useClickOutside'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
@@ -22,8 +23,9 @@ const props = withDefaults(defineProps<TooltipProps>(), {
 const emits = defineEmits<TooltipEmits>()
 
 const isOpen = ref(false)
-const popperNode = ref<HTMLElement | null>(null)
-const triggerNode = ref<HTMLElement | null>(null)
+const popperNode = ref<HTMLElement>()
+const triggerNode = ref<HTMLElement>()
+const popperContainerNode = ref<HTMLElement>()
 let popperInstance: PopperInstance | null = null
 
 let events: Record<string, any> = reactive({})
@@ -43,6 +45,13 @@ const close = () => {
   isOpen.value = false
   emits('visible-change',isOpen.value)
 }
+
+useClickOutside(popperContainerNode, () => {
+  if (props.trigger === 'click' && isOpen.value) {
+    console.log("🚀 ~ useClickOutside ~ : callback called")
+    close()
+  }
+})
 
 const attachEvents = () => {
   if (props.trigger === 'hover') {
