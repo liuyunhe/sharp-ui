@@ -1,8 +1,13 @@
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <Tooltip placement="right" :trigger="trigger">
+      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+      <template #content>
+        <h1>Hello Tooltip</h1>
+      </template>
+    </Tooltip>
   </header>
-   <Icon icon="arrow-up" :size="size" type="danger" color="#0e7a0d" spin/>
+  <Icon icon="arrow-up" :size="size" type="danger" color="#0e7a0d" spin />
   <main>
     <div style="margin-bottom: 20px">
       <Button>默认按钮</Button>
@@ -50,7 +55,7 @@
           <div>this is cccc test</div>
         </CollapseItem>
       </Collapse>
-      {{  openedValue  }}
+      {{ openedValue }}
     </div>
   </main>
 </template>
@@ -62,12 +67,15 @@ import Icon from './components/Icon/Icon.vue'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import CollapseItem from '@/components/Collapse/CollapseItem.vue'
 import type { ButtonInstance } from './components/Button/types'
+import Tooltip from '@/components/Tooltip/Tooltip.vue'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 
 const openedValue = ref(['a'])
 
 const size = ref<any>('3x')
+
+const trigger = ref<any>('click')
 
 onMounted(() => {
   if (buttonRef.value) {
