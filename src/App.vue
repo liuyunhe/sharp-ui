@@ -1,16 +1,27 @@
 <template>
   <header>
-    <Tooltip placement="right" :trigger="trigger">
+    <Tooltip
+      ref="tooltipRef"
+      placement="right"
+      :popper-options="popperOptions"
+      :trigger="trigger"
+      :open-delay="1000"
+      :close-delay="1000"
+    >
       <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
       <template #content>
-        <h1>Hello Tooltip</h1>
+        <div>Hello Tooltip</div>
       </template>
     </Tooltip>
   </header>
+  <div style="margin-bottom: 20px">
+    <Button type="primary" @click="open">打开Tooltip</Button>
+    <Button @click="close">关闭Tooltip</Button>
+  </div>
   <Icon icon="arrow-up" :size="size" type="danger" color="#0e7a0d" spin />
   <main>
     <div style="margin-bottom: 20px">
-      <Button>默认按钮</Button>
+      <Button ref="buttonRef">默认按钮</Button>
       <Button type="primary">主要按钮</Button>
       <Button type="success">成功按钮</Button>
       <Button type="info">信息按钮</Button>
@@ -68,14 +79,29 @@ import Collapse from '@/components/Collapse/Collapse.vue'
 import CollapseItem from '@/components/Collapse/CollapseItem.vue'
 import type { ButtonInstance } from './components/Button/types'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
+import type { TooltipInstance } from './components/Tooltip/types'
+import type { Options as PopperOptions } from '@popperjs/core'
 
 const buttonRef = ref<ButtonInstance | null>(null)
+const tooltipRef = ref<TooltipInstance | null>(null)
 
 const openedValue = ref(['a'])
 
 const size = ref<any>('3x')
 
-const trigger = ref<any>('click')
+const trigger = ref<any>('hover')
+
+const popperOptions: Partial<PopperOptions> = {
+  placement: 'right-end',
+  strategy: 'fixed'
+}
+
+const open = () => {
+  tooltipRef.value?.show()
+}
+const close = () => {
+  tooltipRef.value?.hide()
+}
 
 onMounted(() => {
   if (buttonRef.value) {
