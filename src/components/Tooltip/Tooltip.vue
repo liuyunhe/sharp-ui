@@ -10,16 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue'
+import { computed, onUnmounted, reactive, ref, watch } from 'vue'
 import type { Instance as PopperInstance } from '@popperjs/core'
-import  { createPopper } from '@popperjs/core'
-import type { TooltipEmits, TooltipProps } from './types'
+import { createPopper } from '@popperjs/core'
+import type { TooltipEmits, TooltipProps, TooltipInstance } from './types'
 import useClickOutside from '@/hooks/useClickOutside'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover'
- })
+})
 const emits = defineEmits<TooltipEmits>()
 
 const isOpen = ref(false)
@@ -33,22 +33,22 @@ let outerEvents: Record<string, any> = reactive({})
 
 const togglePopper = () => {
   isOpen.value = !isOpen.value
-  emits('visible-change',isOpen.value)
+  emits('visible-change', isOpen.value)
 }
 
 const open = () => {
   isOpen.value = true
-  emits('visible-change',isOpen.value)
+  emits('visible-change', isOpen.value)
 }
 
 const close = () => {
   isOpen.value = false
-  emits('visible-change',isOpen.value)
+  emits('visible-change', isOpen.value)
 }
 
 useClickOutside(popperContainerNode, () => {
-  if (props.trigger === 'click' && isOpen.value) {
-    console.log("🚀 ~ useClickOutside ~ : callback called")
+  if (props.trigger === 'click' && isOpen.value && !props.manual) {
+    console.log('🚀 ~ useClickOutside ~ : callback called')
     close()
   }
 })
@@ -58,31 +58,61 @@ const attachEvents = () => {
     events['mouseenter'] = open
     outerEvents['mouseleave'] = close
   } else if (props.trigger === 'click') {
-    events['click'] =  togglePopper
+    events['click'] = togglePopper
   }
 }
 
-attachEvents()
+if (!props.manual) {
+  attachEvents()
+}
 
-watch(() => props.trigger, (newTrigger, oldTrigger) => {
-  if (newTrigger !== oldTrigger) { 
-    events = {}
-    outerEvents = {}
-    attachEvents()
+watch(
+  () => props.manual,
+  (isManual) => {
+    if (isManual) {
+      events = {}
+      outerEvents = {}
+    } else {
+      attachEvents()
+    }
   }
+)
+
+watch(
+  () => props.trigger,
+  (newTrigger, oldTrigger) => {
+    if (newTrigger !== oldTrigger) {
+      events = {}
+      outerEvents = {}
+      attachEvents()
+    }
+  }
+)
+
+watch(
+  () => isOpen.value,
+  (newValue) => {
+    if (newValue) {
+      if (triggerNode.value && popperNode.value) {
+        popperInstance = createPopper(triggerNode.value, popperNode.value, {
+          placement: props.placement
+        })
+      } else {
+        popperInstance?.destroy()
+      }
+    }
+  },
+  { flush: 'post' }
+)
+
+onUnmounted(() => {
+  popperInstance?.destroy()
 })
 
-watch(() => isOpen.value, (newValue) => {
-  if (newValue) {
-    if (triggerNode.value && popperNode.value) {
-      popperInstance = createPopper(triggerNode.value, popperNode.value, {
-        placement: props.placement
-      })
-    } else { 
-      popperInstance?.destroy()
-    }
-  } 
-}, {flush: 'post'})
+defineExpose<TooltipInstance>({
+  'show':open,
+  'hide':close
+})
 </script>
 
 <style scoped></style>
