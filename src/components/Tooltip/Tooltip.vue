@@ -3,9 +3,11 @@
     <div class="s-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>
-    <div v-if="isOpen" class="s-tooltip__popper" ref="popperNode">
+    <Transition :name="transition">
+      <div v-if="isOpen" class="s-tooltip__popper" ref="popperNode">
       <slot name="content">{{ content }}</slot>
     </div>
+    </Transition>
   </div>
 </template>
 
@@ -18,7 +20,8 @@ import useClickOutside from '@/hooks/useClickOutside'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
-  trigger: 'hover'
+  trigger: 'hover',
+  transition: 'fade'
 })
 const emits = defineEmits<TooltipEmits>()
 
@@ -30,6 +33,13 @@ let popperInstance: PopperInstance | null = null
 
 let events: Record<string, any> = reactive({})
 let outerEvents: Record<string, any> = reactive({})
+
+const popperOptions = computed(() => {
+  return {
+    placement: props.placement,
+    ...props.popperOptions
+  }
+})
 
 const togglePopper = () => {
   isOpen.value = !isOpen.value
@@ -94,9 +104,7 @@ watch(
   (newValue) => {
     if (newValue) {
       if (triggerNode.value && popperNode.value) {
-        popperInstance = createPopper(triggerNode.value, popperNode.value, {
-          placement: props.placement
-        })
+        popperInstance = createPopper(triggerNode.value, popperNode.value, popperOptions.value)
       } else {
         popperInstance?.destroy()
       }
