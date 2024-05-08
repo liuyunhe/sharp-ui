@@ -4,7 +4,7 @@
       <slot />
     </div>
     <Transition :name="transition">
-      <div v-if="isOpen" class="s-tooltip__popper" ref="popperNode">
+      <div v-if="isOpen" class="s-tooltip__popper" ref="popperNode" v-on="popperEvents">
         <slot name="content">{{ content }}</slot>
         <div id="arrow" data-popper-arrow></div>
       </div>
@@ -35,6 +35,7 @@ let popperInstance: PopperInstance | null = null
 
 let events: Record<string, any> = reactive({})
 let outerEvents: Record<string, any> = reactive({})
+let popperEvents: Record<string, any> = reactive({})
 
 let openTimes = 0
 let closeTimes = 0
@@ -83,9 +84,9 @@ const closeFinal = () => {
 
 const togglePopper = () => {
   if (isOpen.value) {
-    openFinal()
-  } else {
     closeFinal()
+  } else {
+    openFinal()
   }
 }
 
@@ -99,6 +100,7 @@ useClickOutside(popperContainerNode, () => {
 const attachEvents = () => {
   if (props.trigger === 'hover') {
     events['mouseenter'] = openFinal
+    popperEvents['mouseenter'] = openFinal
     outerEvents['mouseleave'] = closeFinal
   } else if (props.trigger === 'click') {
     events['click'] = togglePopper
@@ -115,6 +117,7 @@ watch(
     if (isManual) {
       events = {}
       outerEvents = {}
+      popperEvents = {}
     } else {
       attachEvents()
     }
@@ -127,6 +130,7 @@ watch(
     if (newTrigger !== oldTrigger) {
       events = {}
       outerEvents = {}
+      popperEvents = {}
       attachEvents()
     }
   }

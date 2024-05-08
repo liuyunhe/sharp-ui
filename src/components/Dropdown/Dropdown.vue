@@ -1,0 +1,58 @@
+<template>
+  <div class="s-dropdown">
+    <Tooltip
+      :trigger="trigger"
+      :placement="placement"
+      :popper-options="popperOptions"
+      :open-delay="openDelay"
+      :close-delay="closeDelay"
+      @visible-change="visibleChange"
+      ref="tooltipRef"
+    >
+      <slot></slot>
+      <template #content>
+        <ul class="s-dropdown__menu">
+          <template v-for="item in menuOptions" :key="item.key">
+            <li v-if="item.divided" role="separator" class="divided-placeholder"></li>
+            <li
+              class="s-dropdown__item"
+              :class="{ 'is-disabled': item.disabled, 'is-divided': item.divided }"
+              :id="`dropdown-item-${item.key}`"
+              @click="($event) => itemClick(item)"
+            >
+              {{ item.label }}
+            </li>
+          </template>
+        </ul>
+      </template>
+    </Tooltip>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { DropdownProps, DropdownInstance, DropdownEmits, MenuOption } from './types'
+import Tooltip from '../Tooltip/Tooltip.vue'
+import type { TooltipInstance } from '../Tooltip/types'
+import { ref, type Ref } from 'vue'
+
+const porps = defineProps<DropdownProps>()
+const emits = defineEmits<DropdownEmits>()
+
+const tooltipRef = ref() as Ref<TooltipInstance|undefined>
+
+const visibleChange = (e: boolean) => {
+  emits('visible-change', e)
+}
+
+const itemClick = (e: MenuOption) => {
+  if (e.disabled) return
+  emits('select', e)
+}
+
+defineExpose<DropdownInstance>({
+  show: tooltipRef.value?.show!,
+  hide: tooltipRef.value?.hide!
+})
+</script>
+
+<style scoped></style>
