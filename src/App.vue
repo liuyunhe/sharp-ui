@@ -1,19 +1,32 @@
 <template>
   <header>
-    <Tooltip
-      ref="tooltipRef"
-      placement="right"
-      :popper-options="popperOptions"
-      :trigger="trigger"
-      :open-delay="1000"
+    <div style="margin-bottom: 20px">
+      <Tooltip
+        ref="tooltipRef"
+        placement="right"
+        :popper-options="popperOptions"
+        :trigger="trigger"
+        :open-delay="200"
+        :close-delay="200"
+      >
+        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+        <template #content>
+          <div>Hello Tooltip</div>
+        </template>
+      </Tooltip>
+    </div>
+  </header>
+  <div style="margin-bottom: 20px">
+    <Dropdown
+      ref="dropdownRef"
+      :menu-options="menuOptions"
+      trigger="click"
+      :open-delay="200"
       :close-delay="1000"
     >
       <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-      <template #content>
-        <div>Hello Tooltip</div>
-      </template>
-    </Tooltip>
-  </header>
+    </Dropdown>
+  </div>
   <div style="margin-bottom: 20px">
     <Button type="primary" @click="open">打开Tooltip</Button>
     <Button @click="close">关闭Tooltip</Button>
@@ -81,6 +94,8 @@ import type { ButtonInstance } from './components/Button/types'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
+import Dropdown from '@/components/Dropdown/Dropdown.vue'
+import type { MenuOption } from '@/components/Dropdown/types'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
@@ -103,6 +118,13 @@ const close = () => {
   tooltipRef.value?.hide()
 }
 
+const menuOptions: MenuOption[] = [
+  { key: 1, label: 'item1' },
+  { key: 2, label: 'item2', disabled: true },
+  { key: 3, label: 'item3', divided: true },
+  { key: 4, label: 'item4' }
+]
+
 onMounted(() => {
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
@@ -122,7 +144,6 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
 }
 
 @media (min-width: 1024px) {
@@ -130,10 +151,6 @@ header {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   header .wrapper {
