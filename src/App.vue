@@ -106,6 +106,7 @@ import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 import Message from '@/components/Message/Message.vue'
+import { createMessage } from '@/components/Message/methods'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
@@ -141,13 +142,16 @@ const inlineConsole = (...args: any) => {
 }
 
 const menuOptions: MenuOption[] = [
-  { key: 1, label: 'item1' },
+  { key: 1, label: h('b', 'this is bold') },
   { key: 2, label: 'item2', disabled: true },
   { key: 3, label: 'item3', divided: true },
   { key: 4, label: 'item4' }
 ]
 
 onMounted(() => {
+  createMessage({ message: 'hello word','showClose': true })
+  createMessage({ message: 'hello word','showClose': true })
+  createMessage({ message: 'hello word','showClose': true })
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
     console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
