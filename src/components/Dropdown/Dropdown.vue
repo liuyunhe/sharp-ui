@@ -20,7 +20,7 @@
               :id="`dropdown-item-${item.key}`"
               @click="($event) => itemClick(item)"
             >
-              {{ item.label }}
+              <RenderVnode :vNode="item.label" />
             </li>
           </template>
         </ul>
@@ -33,12 +33,17 @@
 import type { DropdownProps, DropdownInstance, DropdownEmits, MenuOption } from './types'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import type { TooltipInstance } from '../Tooltip/types'
+import RenderVnode from '@/components/Common/RenderVnode'
 import { ref, type Ref } from 'vue'
 
-const porps = defineProps<DropdownProps>()
+defineOptions({
+  name: 'S-Dropdown'
+})
+
+const porps = withDefaults(defineProps<DropdownProps>(), { hideAfterClick: true })
 const emits = defineEmits<DropdownEmits>()
 
-const tooltipRef = ref() as Ref<TooltipInstance|undefined>
+const tooltipRef = ref() as Ref<TooltipInstance | undefined>
 
 const visibleChange = (e: boolean) => {
   emits('visible-change', e)
@@ -47,11 +52,12 @@ const visibleChange = (e: boolean) => {
 const itemClick = (e: MenuOption) => {
   if (e.disabled) return
   emits('select', e)
+  if(porps.hideAfterClick) tooltipRef.value?.hide()
 }
 
 defineExpose<DropdownInstance>({
-  show: tooltipRef.value?.show!,
-  hide: tooltipRef.value?.hide!
+  show: () => tooltipRef.value?.show(),
+  hide: () => tooltipRef.value?.hide()
 })
 </script>
 

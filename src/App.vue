@@ -17,21 +17,30 @@
     </div>
   </header>
   <div style="margin-bottom: 20px">
+    <Button type="primary" @click="open">打开Tooltip</Button>
+    <Button @click="close">关闭Tooltip</Button>
+  </div>
+  <div style="margin-bottom: 20px">
     <Dropdown
       ref="dropdownRef"
       :menu-options="menuOptions"
       trigger="click"
-      :open-delay="200"
-      :close-delay="1000"
+      :open-delay="100"
+      :close-delay="100"
+      manual
+      @visible-change="(e) => inlineConsole('visible change', e)"
+      @select="(e) => inlineConsole('select', e)"
     >
       <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
     </Dropdown>
   </div>
   <div style="margin-bottom: 20px">
-    <Button type="primary" @click="open">打开Tooltip</Button>
-    <Button @click="close">关闭Tooltip</Button>
+    <Button type="primary" @click="openDropdown">打开Dropdown</Button>
+    <Button @click="closeDropdown">关闭Dropdown</Button>
   </div>
-  <Icon icon="arrow-up" :size="size" type="danger" color="#0e7a0d" spin />
+  <div style="margin-bottom: 20px">
+    <Icon icon="arrow-up" :size="size" type="danger" color="#0e7a0d" spin />
+  </div>
   <main>
     <div style="margin-bottom: 20px">
       <Button ref="buttonRef">默认按钮</Button>
@@ -85,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { h, onMounted, ref } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
 import Collapse from '@/components/Collapse/Collapse.vue'
@@ -94,11 +103,14 @@ import type { ButtonInstance } from './components/Button/types'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
-import Dropdown from '@/components/Dropdown/Dropdown.vue'
-import type { MenuOption } from '@/components/Dropdown/types'
+import Dropdown from '@/components/Dropdown/Dropdown'
+import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
+import Message from '@/components/Message/Message.vue'
+import { createMessage } from '@/components/Message/methods'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
+const dropdownRef = ref<DropdownInstance | null>(null)
 
 const openedValue = ref(['a'])
 
@@ -111,6 +123,13 @@ const popperOptions: Partial<PopperOptions> = {
   strategy: 'fixed'
 }
 
+const openDropdown = () => {
+  dropdownRef.value?.show()
+}
+const closeDropdown = () => {
+  dropdownRef.value?.hide()
+}
+
 const open = () => {
   tooltipRef.value?.show()
 }
@@ -118,14 +137,21 @@ const close = () => {
   tooltipRef.value?.hide()
 }
 
+const inlineConsole = (...args: any) => {
+  console.log(...args)
+}
+
 const menuOptions: MenuOption[] = [
-  { key: 1, label: 'item1' },
+  { key: 1, label: h('b', 'this is bold') },
   { key: 2, label: 'item2', disabled: true },
   { key: 3, label: 'item3', divided: true },
   { key: 4, label: 'item4' }
 ]
 
 onMounted(() => {
+  createMessage({ message: 'hello word','showClose': true })
+  createMessage({ message: 'hello word','showClose': true })
+  createMessage({ message: 'hello word','showClose': true })
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
     console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
