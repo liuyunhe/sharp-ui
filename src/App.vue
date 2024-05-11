@@ -149,9 +149,9 @@ const menuOptions: MenuOption[] = [
 ]
 
 onMounted(() => {
-  createMessage({ message: 'hello word','showClose': true })
-  createMessage({ message: 'hello word','showClose': true })
-  createMessage({ message: 'hello word','showClose': true })
+  createMessage({ message: 'hello word', showClose: true, duration: 0 })
+  createMessage({ message: 'hello word', showClose: true, duration: 0 })
+  createMessage({ message: 'hello word', showClose: true, duration: 0 })
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
     console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
