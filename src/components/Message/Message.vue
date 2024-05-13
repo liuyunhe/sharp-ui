@@ -34,8 +34,9 @@ const props = withDefaults(defineProps<MessageProps>(), {
 const messageRef = ref<HTMLDivElement>()
 const instance = getCurrentInstance()
 console.log("🚀 ~ inner instance:", instance)
+
 // 计算偏移高度
-// 这个div高度
+// 初始化div高度
 const height = ref(0)
 // 上一个实例的最下面的坐标数字，第一个是0
 const lastOffset = computed(() => getLastBottomOffset(props.id))
@@ -48,11 +49,20 @@ const cssStyle = computed(() => ({
   top: topOffset.value + 'px',
 }))
 
-
+// 创建一个名为visible的ref，初始值为false
+// 该ref用于追踪组件内的可见性状态
 const visible = ref(false)
+
+/**
+ * 开始计时器，当计时器结束时，若组件可见，则将其隐藏。
+ * 
+ * @param {Number} props.duration - 计时器持续时间，单位为毫秒。
+ */
 const startTimer = () => {
+  // 如果设定的持续时间大于0，则启动计时器
   if (props.duration > 0) {
     setTimeout(() => {
+      // 若组件在计时器结束时仍可见，则将其隐藏
       if (!visible.value) return
       visible.value = false
     }, props.duration)
@@ -60,19 +70,24 @@ const startTimer = () => {
 }
 
 onMounted(async() => {
-  visible.value = true
-  startTimer()
-  await nextTick()
-  height.value = messageRef.value!.getBoundingClientRect().height
+  visible.value = true // 设置组件为可见状态
+  startTimer() // 启动计时器
+  await nextTick() // 等待DOM更新
+  height.value = messageRef.value!.getBoundingClientRect().height // 获取并设置消息元素的高度
 })
+
+/**
+ * 监听visible的值的变化
+ * 当visible的值变为false时，调用props中的onDestory方法
+ */
 watch(visible, (newValue) => {
-  if (!newValue) {
-    props.onDestory()
+  if (!newValue) { // 当visible变为false时
+    props.onDestory() // 调用销毁函数
   }
 })
 
 defineExpose({
-  bottomOffset
+  bottomOffset  // 暴露bottomOffset变量，允许外部访问和修改。
 })
 </script>
 
