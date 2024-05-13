@@ -8,6 +8,7 @@
 import { render, h, shallowReactive } from 'vue'
 import { type CreateMessageProps, type MessageContext } from './types'
 import MessageConstructor from './Message.vue'
+import useZIndex from '@/hooks/useZIndex'
 
 // 用于管理消息实例的数组和生成唯一ID的种子
 let seed = 1
@@ -24,6 +25,7 @@ const instances: MessageContext[] = shallowReactive([])
  * @param props - 组件的属性
  */
 export const createMessage = (props: CreateMessageProps) => {
+  const { nextZIndex } = useZIndex()
   // 为每个消息实例生成唯一ID
   const id = `message_${seed++}`
 
@@ -41,8 +43,15 @@ export const createMessage = (props: CreateMessageProps) => {
     render(null, container) // 清空渲染的组件
   }
 
+  // 手动调用删除，其实就是手动的调整组件中的visible的值
+  const manualDestroy = () => {
+    const instance = instances.find((instance) => instance.id === id)
+    if (instance) {
+      instance.vm.exposed!.visible.value = false
+    }
+  }
   // 合并用户传入的props和销毁函数
-  const newProps = { ...props, id, onDestory: destory }
+  const newProps = { ...props, id, onDestory: destory, zIndex: nextZIndex() }
   // 使用Vue的h函数创建虚拟节点,它包含了组件的各种信息，如组件类型、props等。
   const vnode = h(MessageConstructor, newProps)
   console.log('🚀 ~ createMessage ~ vnode:', vnode)
@@ -56,7 +65,7 @@ export const createMessage = (props: CreateMessageProps) => {
   // 通过此方法，我们可以直接访问到组件实例，进而可以对组件进行进一步的操作。
   const vm = vnode.component!
   // 将实例信息保存到数组中
-  const instance = { id, vnode, vm, props: newProps, destory }
+  const instance = { id, vnode, vm, props: newProps, destory: manualDestroy }
   instances.push(instance)
   console.log('🚀 ~ createMessage ~ instances:', instances)
   // 返回实例
