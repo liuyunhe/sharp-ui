@@ -7,6 +7,8 @@ import type { VNode, ComponentInternalInstance } from 'vue'
  * @showClose 是否显示关闭按钮
  * @type 消息类型，可选值为 'success'、'info'、'warning'、'danger'
  * @onDestory 消息被销毁时的回调函数
+ * @id 消息的唯一标识符。
+ * @zIndex 消息组件的z-index值，用于控制层叠顺序。
  * @offset 消息垂直偏移量，用于控制消息位置
  * @transitionName 转场动画名称
  */
@@ -17,7 +19,7 @@ export interface MessageProps {
   type?: 'success' | 'info' | 'warning' | 'danger'
   onDestory: () => void
   id: string;
-  // zIndex: number;
+  zIndex: number;
   offset?: number
   transitionName?: string
 }
@@ -27,6 +29,7 @@ export interface MessageProps {
  * @id 消息的唯一标识符
  * @vnode 虚拟节点，代表消息组件
  * @props 消息组件的属性
+ * @vm 组件的内部实例，用于访问组件的内部方法和属性
  * @destory 销毁消息组件的方法
  */
 export interface MessageContext {
