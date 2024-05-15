@@ -1,5 +1,10 @@
 <template>
-  <div
+  <Transition
+   :name="transitionName"
+   @after-leave="destroyComponent"
+   @enter="updateHeight"
+   >
+    <div
     ref="messageRef"
     v-show="visible"
     class="s-message"
@@ -18,20 +23,23 @@
       <Icon icon="xmark" @click.stop="visible = false" />
     </div>
   </div>
+  </Transition>
+  
 </template>
 
 <script setup lang="ts">
 import { type MessageProps } from './types'
 import Icon from '@/components/Icon/Icon.vue'
 import RenderVnode from '@/components/Common/RenderVnode'
-import { computed, onMounted, ref, watch, nextTick, getCurrentInstance } from 'vue'
+import { computed, onMounted, ref, getCurrentInstance } from 'vue'
 import { getLastBottomOffset } from './methods'
 import useEventListener from '@/hooks/useEventListener'
 
 const props = withDefaults(defineProps<MessageProps>(), {
   type: 'info',
   duration: 3000,
-  offset: 20
+  offset: 20,
+  transitionName: 'fade-up'
 })
 
 const messageRef = ref<HTMLDivElement>()
@@ -84,8 +92,8 @@ const clearTimer = () => {
 onMounted(async () => {
   visible.value = true // 设置组件为可见状态
   startTimer() // 启动计时器
-  await nextTick() // 等待DOM更新
-  height.value = messageRef.value!.getBoundingClientRect().height // 获取并设置消息元素的高度
+  // await nextTick() // 等待DOM更新
+  // height.value = messageRef.value!.getBoundingClientRect().height // 获取并设置消息元素的高度
 })
 
 /**
@@ -106,12 +114,33 @@ useEventListener(document,'keydown',keydown)
  * 监听visible的值的变化
  * 当visible的值变为false时，调用props中的onDestory方法
  */
-watch(visible, (newValue) => {
-  if (!newValue) {
-    // 当visible变为false时
-    props.onDestory() // 调用销毁函数
-  }
-})
+
+// watch(visible, (newValue) => {
+//   if (!newValue) {
+//     // 当visible变为false时
+//     props.onDestory() // 调用销毁函数
+//   }
+// })
+
+/**
+ * 销毁组件的函数。
+ * 调用从父组件传入的onDestory方法，进行组件的销毁操作。
+ */
+ const destroyComponent = () => {
+  props.onDestory()
+ }
+
+
+/**
+ * 更新高度的函数。
+ * 无参数。
+ * 无返回值。
+ * 主要用于获取messageRef当前的高度，并更新height的值。
+ */
+const updateHeight = () => {
+  // 获取messageRef元素的高度，并赋值给height
+  height.value = messageRef.value!.getBoundingClientRect().height
+}
 
 defineExpose({
   bottomOffset, // 暴露bottomOffset变量，允许外部访问和修改。

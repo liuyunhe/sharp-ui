@@ -33,7 +33,7 @@ export const createMessage = (props: CreateMessageProps) => {
   const container = document.createElement('div')
 
   /**
-   * 销毁函数，用于移除渲染的消息组件。
+   * 销毁函数，在消息组件中visible置为false时会触发该函数，用于销毁消息组件。
    */
   const onDestory = () => {
     // 在实例数组中查找并移除当前消息实例
@@ -65,7 +65,7 @@ export const createMessage = (props: CreateMessageProps) => {
   // 通过此方法，我们可以直接访问到组件实例，进而可以对组件进行进一步的操作。
   const vm = vnode.component!
   // 将实例信息保存到数组中
-  const instance = {
+  const instance: MessageContext = {
     id,
     vnode,
     vm,
