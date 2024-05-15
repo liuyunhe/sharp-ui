@@ -94,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { h, onMounted, ref } from 'vue'
+import { h, nextTick, onMounted, ref } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
 import Collapse from '@/components/Collapse/Collapse.vue'
@@ -105,7 +105,7 @@ import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
-import Message from '@/components/Message/Message.vue'
+// import Message from '@/components/Message/Message.vue'
 import { createMessage } from '@/components/Message/methods'
 
 const buttonRef = ref<ButtonInstance | null>(null)
@@ -149,9 +149,16 @@ const menuOptions: MenuOption[] = [
 ]
 
 onMounted(() => {
-  const instance = createMessage({ message: 'hello word', showClose: true, duration: 1000 })
-  createMessage({ message: 'hello word', showClose: true, duration: 1000 })
-  createMessage({ message: 'hello word', showClose: true, duration: 1000 })
+  const instance = createMessage({
+    type: 'warning',
+    message: 'hello word',
+    showClose: true
+  })
+  nextTick(() => {
+    console.log('🚀 ~ onMounted ~ instance:', instance)
+  })
+  createMessage({ type: 'success', message: 'hello word', showClose: true })
+  createMessage({ type: 'danger', message: 'hello word', showClose: true})
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
     console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
