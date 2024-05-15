@@ -33,9 +33,9 @@ export const createMessage = (props: CreateMessageProps) => {
   const container = document.createElement('div')
 
   /**
-   * 销毁函数，用于移除渲染的消息组件。
+   * 销毁函数，在消息组件中visible置为false时会触发该函数，用于销毁消息组件。
    */
-  const destory = () => {
+  const onDestory = () => {
     // 在实例数组中查找并移除当前消息实例
     const idx = instances.findIndex((instance) => instance.id === id)
     if (idx === -1) return
@@ -51,7 +51,7 @@ export const createMessage = (props: CreateMessageProps) => {
     }
   }
   // 合并用户传入的props和销毁函数
-  const newProps = { ...props, id, onDestory: destory, zIndex: nextZIndex() }
+  const newProps = { ...props, id, onDestory, zIndex: nextZIndex() }
   // 使用Vue的h函数创建虚拟节点,它包含了组件的各种信息，如组件类型、props等。
   const vnode = h(MessageConstructor, newProps)
   console.log('🚀 ~ createMessage ~ vnode:', vnode)
@@ -65,7 +65,13 @@ export const createMessage = (props: CreateMessageProps) => {
   // 通过此方法，我们可以直接访问到组件实例，进而可以对组件进行进一步的操作。
   const vm = vnode.component!
   // 将实例信息保存到数组中
-  const instance = { id, vnode, vm, props: newProps, destory: manualDestroy }
+  const instance: MessageContext = {
+    id,
+    vnode,
+    vm,
+    props: newProps,
+    destory: manualDestroy
+  }
   instances.push(instance)
   console.log('🚀 ~ createMessage ~ instances:', instances)
   // 返回实例
