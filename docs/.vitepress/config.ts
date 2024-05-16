@@ -8,7 +8,11 @@ export default defineConfig({
   description: 'A VitePress Site',
   // srcDir: 'components',
   markdown: {
+    // 配置Markdown处理的插件。
+    // 该函数无返回值。
+    // md Markdown处理实例，用于链式调用插件。
     config(md) {
+      // 使用containerPreview和componentPreview插件增强Markdown功能
       md.use(containerPreview)
       md.use(componentPreview)
     }
