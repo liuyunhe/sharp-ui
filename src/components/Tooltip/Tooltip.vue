@@ -20,6 +20,10 @@ import type { TooltipEmits, TooltipProps, TooltipInstance } from './types'
 import useClickOutside from '@/hooks/useClickOutside'
 import { debounce } from "lodash-es";
 
+defineOptions({
+  name: 'S-Tooltip'
+})
+
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover',

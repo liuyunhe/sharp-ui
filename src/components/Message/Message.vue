@@ -35,6 +35,10 @@ import { computed, onMounted, ref, getCurrentInstance } from 'vue'
 import { getLastBottomOffset } from './methods'
 import useEventListener from '@/hooks/useEventListener'
 
+defineOptions({
+  name: 'S-Message'
+})
+
 const props = withDefaults(defineProps<MessageProps>(), {
   type: 'info',
   duration: 3000,
