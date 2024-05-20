@@ -44,7 +44,10 @@ export default defineConfig({
       },
       {
         text: 'Basic',
-        items: [{ text: 'Button', link: '/components/button' }]
+        items: [
+          { text: 'Button', link: '/components/button' },
+          { text: 'Input', link: '/components/input' },
+        ]
       }
     ],
     outline: {
