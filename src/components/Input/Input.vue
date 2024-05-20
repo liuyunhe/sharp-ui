@@ -24,20 +24,36 @@
         </span>
         <!-- input -->
         <input
+          ref="inputRef"
           class="s-input__inner"
+          v-bind="attrs"
           :type="type"
-          :placeholder="placeholder"
           :disabled="disabled"
           v-model="innerValue"
+          :readonly="readonly"
+          :autocomplete="autocomplete"
+          :placeholder="placeholder"
+          :autofocus="autofocus"
+          :form="form"
           @input="handleInput"
           @change="handleChange"
           @focus="handleFocus"
           @blur="handleBlur"
         />
         <!-- suffix -->
-        <span v-if="$slots.suffix || showClear || showPasswordArea" class="s-input__suffix">
+        <span
+          v-if="$slots.suffix || showClear || showPasswordArea"
+          class="s-input__suffix"
+          @click="keepFocus"
+        >
           <slot name="suffix"></slot>
-          <Icon icon="circle-xmark" v-if="showClear" class="s-input__clear" @click="clear" />
+          <Icon
+            icon="circle-xmark"
+            v-if="showClear"
+            class="s-input__clear"
+            @click="clear"
+            @mousedown.prevent="NOOP"
+          />
           <Icon
             icon="eye"
             v-if="showPasswordArea && passwordVisible"
@@ -60,9 +76,16 @@
     <!-- textarea -->
     <template v-else>
       <textarea
+        ref="inputRef"
         class="s-textarea__wrapper"
+        v-bind="attrs"
         :disabled="disabled"
         v-model="innerValue"
+        :readonly="readonly"
+        :autocomplete="autocomplete"
+        :placeholder="placeholder"
+        :autofocus="autofocus"
+        :form="form"
         @input="handleInput"
         @change="handleChange"
         @focus="handleFocus"
@@ -73,19 +96,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, useAttrs, watch } from 'vue'
 import { type InputProps, type InputEmits } from './types'
 import Icon from '@/components/Icon/Icon.vue'
 defineOptions({
-  name: 'S-Input'
+  name: 'S-Input',
+  inheritAttrs: false
 })
 
 const props = withDefaults(defineProps<InputProps>(), {
+  autocomplete: 'off',
   type: 'text'
 })
+const attrs = useAttrs()
 const innerValue = ref(props.modelValue)
 const isFocus = ref(false)
 const passwordVisible = ref(false)
+
+const inputRef = ref<HTMLInputElement>()
 
 const type = computed(() => {
   return props.showPassword || props.type === 'password'
@@ -96,6 +124,8 @@ const type = computed(() => {
 })
 
 const emits = defineEmits<InputEmits>()
+
+const NOOP = () => {}
 
 const handleInput = (e: Event) => {
   emits('update:modelValue', innerValue.value)
@@ -117,17 +147,24 @@ const togglePasswordVisible = () => {
   passwordVisible.value = !passwordVisible.value
 }
 
+const keepFocus = async () => {
+  await nextTick()
+  inputRef.value?.focus()
+}
+
 const handleFocus = (e: FocusEvent) => {
   isFocus.value = true
   emits('focus', e)
 }
 
 const handleBlur = (e: FocusEvent) => {
+  console.log('blur triggered')
   isFocus.value = false
   emits('blur', e)
 }
 
 const clear = () => {
+  console.log('clear triggered')
   innerValue.value = ''
   emits('update:modelValue', '')
   emits('clear')
@@ -141,6 +178,10 @@ watch(
     innerValue.value = newValue
   }
 )
+
+defineExpose({
+  ref: inputRef
+})
 </script>
 
 <style scoped></style>
