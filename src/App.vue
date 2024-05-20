@@ -72,6 +72,9 @@
       <Button type="success" disabled>成功按钮</Button>
       <Button type="info" loading>信息按钮</Button>
     </div>
+    <div style="margin-bottom: 20px;width: 300px;">
+      <Input v-model="inputValue" show-password clearable></Input>
+    </div>
     <div style="margin-bottom: 20px">
       <Collapse v-model="openedValue" accordion>
         <CollapseItem name="a">
@@ -104,6 +107,7 @@ import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
+import Input from '@/components/Input/Input.vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 // import Message from '@/components/Message/Message.vue'
 import { createMessage } from '@/components/Message/methods'
@@ -117,6 +121,8 @@ const openedValue = ref(['a'])
 const size = ref<any>('3x')
 
 const trigger = ref<any>('hover')
+
+const inputValue = ref('hello word!')
 
 const popperOptions: Partial<PopperOptions> = {
   placement: 'right-end',
