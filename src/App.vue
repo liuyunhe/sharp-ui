@@ -72,8 +72,18 @@
       <Button type="success" disabled>成功按钮</Button>
       <Button type="info" loading>信息按钮</Button>
     </div>
-    <div style="margin-bottom: 20px;width: 300px;">
+    <div style="margin-bottom: 20px; width: 300px">
       <Input v-model="inputValue" show-password clearable></Input>
+    </div>
+    <div style="margin-bottom: 20px">
+      <Switch
+        v-model="switchValue"
+        active-value="1"
+        inactive-value="0"
+        active-text="打开"
+        inactive-text="关闭"
+        @change="(e) => inlineConsole('switch change', e)"
+      ></Switch>
     </div>
     <div style="margin-bottom: 20px">
       <Collapse v-model="openedValue" accordion>
@@ -108,6 +118,7 @@ import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
 import Input from '@/components/Input/Input.vue'
+import Switch from '@/components/Switch/Switch.vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 // import Message from '@/components/Message/Message.vue'
 import { createMessage } from '@/components/Message/methods'
@@ -123,6 +134,8 @@ const size = ref<any>('3x')
 const trigger = ref<any>('hover')
 
 const inputValue = ref('hello word!')
+
+const switchValue = ref('1')
 
 const popperOptions: Partial<PopperOptions> = {
   placement: 'right-end',
@@ -164,7 +177,7 @@ onMounted(() => {
     console.log('🚀 ~ onMounted ~ instance:', instance)
   })
   createMessage({ type: 'success', message: 'hello word', showClose: true })
-  createMessage({ type: 'danger', message: 'hello word', showClose: true})
+  createMessage({ type: 'danger', message: 'hello word', showClose: true })
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
     console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
