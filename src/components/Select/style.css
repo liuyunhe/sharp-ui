@@ -29,6 +29,13 @@
   .s-input__inner {
     cursor: pointer;
   }
+  .s-select__nodata, .s-select__loading {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    color: var(--s-text-color-secondary);
+    font-size: var(--s-select-font-size);
+  }
   .s-select__menu {
     list-style: none;
     margin: 6px 0;
@@ -54,6 +61,9 @@
     &.is-selected {
       color: var(--s-select-item-selected-font-color);
       font-weight: 700;    
+    }
+    &.is-highlighted {
+      background-color: var(--s-select-item-hover-bg-color);
     }
     &.is-disabled {
       color: var(--s-select-item-disabled-font-color);
