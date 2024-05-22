@@ -18,7 +18,7 @@ import type { Instance as PopperInstance } from '@popperjs/core'
 import { createPopper } from '@popperjs/core'
 import type { TooltipEmits, TooltipProps, TooltipInstance } from './types'
 import useClickOutside from '@/hooks/useClickOutside'
-import { debounce } from "lodash-es";
+import { debounce } from 'lodash-es'
 
 defineOptions({
   name: 'S-Tooltip'
@@ -95,9 +95,14 @@ const togglePopper = () => {
 }
 
 useClickOutside(popperContainerNode, () => {
+  // 当触发条件满足时，关闭弹出层并打印日志
   if (props.trigger === 'click' && isOpen.value && !props.manual) {
     console.log('🚀 ~ useClickOutside ~ : callback called')
-    close()
+    closeFinal()
+  }
+  // 如果isOpen为true，emit 'click-outside'事件
+  if (isOpen.value) {
+    emits('click-outside', true)
   }
 })
 
