@@ -105,3 +105,14 @@ export const getLastBottomOffset = (id: string) => {
   // 返回之前实例的底部偏移量。
   return prev.vm.exposed!.bottomOffset.value
 }
+
+/**
+ * 关闭所有实例
+ * 该函数遍历并销毁所有存储在instances中的实例。
+ */
+export const closeAll = () => {
+  // 遍历instances数组，并对每个实例调用destroy方法
+  instances.forEach((instance) => {
+    instance.destory()
+  })
+}

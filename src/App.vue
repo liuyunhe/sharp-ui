@@ -86,6 +86,14 @@
       ></Switch>
     </div>
     <div style="margin-bottom: 20px">
+      <Select
+        v-model="selectValue"
+        :options="selectOptions"
+        @change="(e) => inlineConsole('select change', e)"
+        @visible-change="(e) => inlineConsole('select visible change', e)"
+      ></Select>
+    </div>
+    <div style="margin-bottom: 20px">
       <Collapse v-model="openedValue" accordion>
         <CollapseItem name="a">
           <template #title>
@@ -119,6 +127,7 @@ import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
 import Input from '@/components/Input/Input.vue'
 import Switch from '@/components/Switch/Switch.vue'
+import Select from '@/components/Select/Select.vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 // import Message from '@/components/Message/Message.vue'
 import { createMessage } from '@/components/Message/methods'
@@ -136,6 +145,14 @@ const trigger = ref<any>('hover')
 const inputValue = ref('hello word!')
 
 const switchValue = ref('1')
+
+const selectValue = ref('')
+
+const selectOptions = ref([
+  { label: 'Option 1', value: '1' },
+  { label: 'Option 2', value: '2' },
+  { label: 'Option 3', value: '3' }
+])
 
 const popperOptions: Partial<PopperOptions> = {
   placement: 'right-end',
