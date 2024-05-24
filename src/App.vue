@@ -41,6 +41,26 @@
   <div style="margin-bottom: 20px">
     <Icon icon="arrow-up" :size="size" type="danger" color="#0e7a0d" spin />
   </div>
+  <div style="margin-bottom: 20px">
+    <Form :model="model" :rules="rules" ref="formRef">
+      <FormItem label="the email" prop="email">
+        <template #default="{ validate }">
+          <Input v-model="model.email" />
+          <Button @click.prevent="() => validate()" style="margin-top: 10px">validate email</Button>
+        </template>
+      </FormItem>
+      <FormItem label="the password" prop="password">
+        <Input type="password" v-model="model.password" />
+      </FormItem>
+      <FormItem prop="confirmPwd" label="confirm password">
+        <Input v-model="model.confirmPwd" type="password" />
+      </FormItem>
+      <div :style="{ textAlign: 'center' }">
+        <Button type="primary" @click.prevent="submit">Submit</Button>
+        <Button @click.prevent="reset">Reset</Button>
+      </div>
+    </Form>
+  </div>
   <main>
     <div style="margin-bottom: 20px">
       <Button ref="buttonRef">默认按钮</Button>
@@ -115,7 +135,7 @@
 </template>
 
 <script setup lang="ts">
-import { h, nextTick, onMounted, ref } from 'vue'
+import { h, nextTick, onMounted, reactive, ref } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
 import Collapse from '@/components/Collapse/Collapse.vue'
@@ -130,7 +150,10 @@ import Switch from '@/components/Switch/Switch.vue'
 import Select from '@/components/Select/Select.vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 // import Message from '@/components/Message/Message.vue'
+import Form from '@/components/Form/Form.vue'
+import FormItem from '@/components/Form/FormItem.vue'
 import { createMessage } from '@/components/Message/methods'
+import type { FormRules } from './components/Form/types'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
@@ -157,6 +180,37 @@ const selectOptions = ref([
 const popperOptions: Partial<PopperOptions> = {
   placement: 'right-end',
   strategy: 'fixed'
+}
+
+const formRef = ref()
+const model = reactive({
+  email: '123',
+  password: '',
+  confirmPwd: ''
+})
+const rules: FormRules = {
+  email: [{ type: 'email', required: true, trigger: 'blur' }],
+  password: [{ type: 'string', required: true, trigger: 'blur', min: 3, max: 5 }],
+  confirmPwd: [
+    { type: 'string', required: true, trigger: 'blur' },
+    {
+      validator: (rule: any, value: string) => value === model.password,
+      trigger: 'blur',
+      message: '两个密码必须相同'
+    }
+  ]
+}
+
+const submit = async () => {
+  try {
+    await formRef.value.validate()
+    console.log('passed!')
+  } catch (e) {
+    console.log('the error', e)
+  }
+}
+const reset = () => {
+  formRef.value.resetFields()
 }
 
 const openDropdown = () => {
