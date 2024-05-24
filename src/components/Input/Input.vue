@@ -96,9 +96,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref, useAttrs, watch } from 'vue'
+import { computed, inject, nextTick, ref, useAttrs, watch } from 'vue'
 import { type InputProps, type InputEmits } from './types'
 import Icon from '@/components/Icon/Icon.vue'
+import { formItemContextKey } from '../Form/types';
 defineOptions({
   name: 'S-Input',
   inheritAttrs: false
@@ -115,6 +116,11 @@ const passwordVisible = ref(false)
 
 const inputRef = ref<HTMLInputElement>()
 
+const formItemContext = inject(formItemContextKey)
+const runValidation = (trigger?: string) => {
+  formItemContext?.validate(trigger).catch((e) => console.log(e.errors))
+}
+
 const type = computed(() => {
   return props.showPassword || props.type === 'password'
     ? passwordVisible.value
@@ -130,9 +136,11 @@ const NOOP = () => {}
 const handleInput = (e: Event) => {
   emits('update:modelValue', innerValue.value)
   emits('input', innerValue.value)
+  runValidation('input')
 }
 const handleChange = (e: Event) => {
   emits('change', innerValue.value)
+  runValidation('change')
 }
 
 const showClear = computed(() => {
@@ -161,6 +169,7 @@ const handleBlur = (e: FocusEvent) => {
   console.log('blur triggered')
   isFocus.value = false
   emits('blur', e)
+  runValidation('blur')
 }
 
 const clear = () => {
