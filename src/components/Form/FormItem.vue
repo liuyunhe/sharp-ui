@@ -53,7 +53,7 @@ const validateStatus: ValidateStatusProp = reactive({
 // 初始化字段值
 let initialValue: any = null
 
-// 计算内部值，基于表单模型和当前道具
+// 计算表单项内部值，基于表单模型和当前字段名
 const innerValue = computed(() => {
   const model = formContext?.model
   if (model && props.prop && !isNil(model[props.prop])) {
@@ -73,7 +73,7 @@ const itemRules = computed(() => {
   }
 })
 
-// 获取触发的规则
+// 获取触发所对应的校验规则
 const getTriggeredRules = (trigger?: string) => {
   const rules = itemRules.value
   if (rules) {
@@ -98,30 +98,40 @@ const isRequired = computed(() => {
  */
 const validate = async (trigger?: string) => {
   const modelName = props.prop
+  // 获取传入的事件类型的校验规则
   const triggeredRules = getTriggeredRules(trigger)
   if (triggeredRules.length === 0) {
     return true
   }
   if (modelName) {
+    // 生成校验器
     const validator = new Schema({
       [modelName]: triggeredRules
     })
     validateStatus.loading = true
-    return validator
-      .validate({ [modelName]: innerValue.value })
-      .then(() => {
-        validateStatus.state = 'success'
-      })
-      .catch((e: FormValidateFailure) => {
-        const { errors } = e
-        validateStatus.state = 'error'
-        validateStatus.errorMsg = errors && errors.length > 0 ? errors[0].message || '' : ''
-        console.log(e.errors)
-        return Promise.reject(e)
-      })
-      .finally(() => {
-        validateStatus.loading = false
-      })
+    // 调用验证器对指定模型名称的值进行验证。
+    // validator 验证器实例，负责执行验证逻辑。
+    // 模型名称，即要验证的字段名。
+    // innerValue 包含待验证值的对象，其属性名需与模型名称对应。
+    // 返回验证结果，通常是一个包含验证状态和消息的对象。
+    return (
+      validator
+        // 使用对象字面量的方式，将模型名称和对应的值传递给validator的validate方法进行验证。
+        .validate({ [modelName]: innerValue.value })
+        .then(() => {
+          validateStatus.state = 'success'
+        })
+        .catch((e: FormValidateFailure) => {
+          const { errors } = e
+          validateStatus.state = 'error'
+          validateStatus.errorMsg = errors && errors.length > 0 ? errors[0].message || '' : ''
+          console.log(e.errors)
+          return Promise.reject(e)
+        })
+        .finally(() => {
+          validateStatus.loading = false
+        })
+    )
   }
 }
 
