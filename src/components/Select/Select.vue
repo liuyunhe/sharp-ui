@@ -2,7 +2,7 @@
   <!-- Select组件的外层容器，管理选中状态、禁用状态和下拉菜单的显示 -->
   <div
     class="s-select"
-    :class="{'is-disabled': disabled }"
+    :class="{ 'is-disabled': disabled }"
     @click="toggleDropdown"
     @mouseenter="states.mouseHover = true"
     @mouseleave="states.mouseHover = false"
@@ -16,7 +16,7 @@
       manual
     >
       <!-- 输入框，管理用户输入和选中项的显示 -->
-      <Input 
+      <Input
         v-model="states.inputValue"
         :disabled="disabled"
         :placeholder="filteredPlaceholder"
@@ -27,45 +27,47 @@
       >
         <!-- 输入框后缀，展示清除图标或下拉箭头 -->
         <template #suffix>
-          <Icon 
+          <Icon
             icon="circle-xmark"
             v-if="showClearIcon"
             class="s-input__clear"
             @mousedown.prevent="NOOP"
-            @click.stop="onClear"  
+            @click.stop="onClear"
           />
 
           <Icon
             v-else
-            icon="angle-down" 
-            class="header-angle" 
+            icon="angle-down"
+            class="header-angle"
             :class="{ 'is-active': isDropdownShow }"
           />
         </template>
       </Input>
       <!-- 提供下拉内容，包括加载状态、无数据状态和选项列表 -->
       <template #content>
-        <div class="s-select__loading" v-if="states.loading"><Icon icon="spinner" spin/></div>
-        <div class="s-select__nodata" v-else-if="filterable && filteredOptions.length === 0">no matching data</div>
+        <div class="s-select__loading" v-if="states.loading"><Icon icon="spinner" spin /></div>
+        <div class="s-select__nodata" v-else-if="filterable && filteredOptions.length === 0">
+          no matching data
+        </div>
         <ul class="s-select__menu" v-else>
           <template v-for="(item, index) in filteredOptions" :key="index">
-            <li 
+            <li
               class="s-select__menu-item"
               :class="{
-                'is-disabled': item.disabled, 
-                'is-selected': states.selectedOption?.value === item.value ,
+                'is-disabled': item.disabled,
+                'is-selected': states.selectedOption?.value === item.value,
                 'is-highlighted': states.highlightIndex === index
               }"
               :id="`select-item-${item.value}`"
               @click.stop="itemSelect(item)"
             >
-              <RenderVnode :vNode="renderLabel ? renderLabel(item) : item.label"/>
+              <RenderVnode :vNode="renderLabel ? renderLabel(item) : item.label" />
             </li>
           </template>
         </ul>
       </template>
     </Tooltip>
-  </div>  
+  </div>
 </template>
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from 'vue'
@@ -81,7 +83,7 @@ import type { InputInstance } from '../Input/types'
 
 // 根据值查找选项
 const findOption = (value: string) => {
-  const option = props.options.find(option => option.value === value)
+  const option = props.options.find((option) => option.value === value)
   return option ? option : null
 }
 // 定义组件内部使用的props、emits和初始状态
@@ -93,7 +95,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
   placeholder: '请选择',
   options: () => []
 })
-const timeout = computed(() => props.remote ? 300 : 0)
+const timeout = computed(() => (props.remote ? 300 : 0))
 const emits = defineEmits<SelectEmits>()
 const initialOption = findOption(props.modelValue)
 const tooltipRef = ref() as Ref<TooltipInstance>
@@ -111,25 +113,28 @@ const popperOptions: any = {
     {
       name: 'offset',
       options: {
-        offset: [0, 9],
-      },
+        offset: [0, 9]
+      }
     },
     {
-      name: "sameWidth",
+      name: 'sameWidth',
       enabled: true,
       fn: ({ state }: { state: any }) => {
-          state.styles.popper.width = `${state.rects.reference.width}px`;
+        state.styles.popper.width = `${state.rects.reference.width}px`
       },
-      phase: "beforeWrite",
-      requires: ["computeStyles"],
+      phase: 'beforeWrite',
+      requires: ['computeStyles']
     }
-  ],
+  ]
 }
 const filteredOptions = ref(props.options)
 // 监听props.options变化，更新filteredOptions
-watch(() => props.options, (newOptions) => {
-  filteredOptions.value = newOptions
-})
+watch(
+  () => props.options,
+  (newOptions) => {
+    filteredOptions.value = newOptions
+  }
+)
 // 根据当前输入过滤选项
 const generateFilterOptions = async (searchValue: string) => {
   if (!props.filterable) return
@@ -146,7 +151,7 @@ const generateFilterOptions = async (searchValue: string) => {
       states.loading = false
     }
   } else {
-    filteredOptions.value = props.options.filter(option => option.label.includes(searchValue))
+    filteredOptions.value = props.options.filter((option) => option.label.includes(searchValue))
   }
   states.highlightIndex = -1
 }
@@ -160,12 +165,13 @@ const debouceOnFilter = debounce(() => {
 }, timeout.value)
 // 计算输入框的placeholder，考虑filterable和已选择项的情况
 const filteredPlaceholder = computed(() => {
-  return (props.filterable && states.selectedOption && isDropdownShow.value) 
-  ? states.selectedOption.label : props.placeholder
+  return props.filterable && states.selectedOption && isDropdownShow.value
+    ? states.selectedOption.label
+    : props.placeholder
 })
 // 控制下拉菜单的显示和隐藏，并处理相关的逻辑
 const controlDropdown = (show: boolean) => {
-  console.log("🚀 ~ controlDropdown ~ show:", show)
+  console.log('🚀 ~ controlDropdown ~ show:', show)
   if (show) {
     // 在filter模式下进行初始化操作
     if (props.filterable && states.selectedOption) {
@@ -222,7 +228,10 @@ const handleKeydown = (e: KeyboardEvent) => {
       // 处理向下箭头事件，选择下一个选项
       e.preventDefault()
       if (filteredOptions.value.length > 0) {
-        if (states.highlightIndex === -1 || states.highlightIndex === (filteredOptions.value.length - 1)) {
+        if (
+          states.highlightIndex === -1 ||
+          states.highlightIndex === filteredOptions.value.length - 1
+        ) {
           states.highlightIndex = 0
         } else {
           states.highlightIndex++
@@ -230,15 +239,14 @@ const handleKeydown = (e: KeyboardEvent) => {
       }
       break
     default:
-      break;
+      break
   }
 }
 // 计算是否显示清除图标
 const showClearIcon = computed(() => {
-  return props.clearable 
-    && states.mouseHover
-    && states.selectedOption
-    && states.inputValue.trim() !== ''
+  return (
+    props.clearable && states.mouseHover && states.selectedOption && states.inputValue.trim() !== ''
+  )
 })
 // 处理清除选中项的操作
 const onClear = () => {
