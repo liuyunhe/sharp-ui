@@ -1,0 +1,50 @@
+.s-alert {
+  --s-alert-bg-color: var(--s-color-info-light-9);
+  --s-alert-border-color: var(--s-border-color-lighter);
+  --s-alert-padding: 15px 19px;
+  --s-alert-close-size: 16px;
+  --s-alert-close-icon-color: var(--s-text-color-placeholder);
+  --s-alert-close-hover-color: var(--s-text-color-secondary);
+}
+.s-alert {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  box-sizing: border-box;
+  border-radius: var(--s-border-radius-base);
+  border-width: var(--s-border-width);
+  border-style: var(--s-border-style);
+  border-color: var(--s-alert-border-color);
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background-color: var(--s-alert-bg-color);
+  padding: var(--s-alert-padding);
+  display: flex;
+  align-items: center;
+  transition: top var(--s-transition-duration), opacity var(--s-transition-duration), transform var(--s-transition-duration);
+  .s-alert__content {
+    color: var(--s-alert-text-color);
+    overflow-wrap: anywhere;
+  }
+  &.is-close .s-alert__content {
+    padding-right: 30px;
+  }
+  .s-alert__close {
+    display: flex;
+    align-items: center;
+  }
+  .s-alert__close svg {
+    cursor: pointer;
+  }
+}
+@each $val in info,success,warning,danger { 
+  .s-alert--$(val) {
+    --s-alert-bg-color: var(--s-color-$(val)-light-9);
+    --s-alert-border-color: var(--s-color-$(val)-light-8);
+    --s-alert-text-color: var(--s-color-$(val));
+    .s-alert__close {
+      --s-icon-color: var(--s-color-$(val));
+    }
+  }
+}
