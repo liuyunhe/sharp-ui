@@ -1,5 +1,16 @@
 <template>
   <header>
+    <div style="margin-bottom: 20px;width: 100%;">
+      <Alert
+        ref="alertRef"
+        content="成功提示的文案"
+        type="success"
+        effect="dark"
+        >
+      </Alert>
+      <Button type="primary" @click="openAlert">打开Alert</BUtton>
+      <Button @click="closeAlert">关闭Alert</BUtton>
+    </div>
     <div style="margin-bottom: 20px">
       <Tooltip
         ref="tooltipRef"
@@ -152,9 +163,12 @@ import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 // import Message from '@/components/Message/Message.vue'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
+import Alert from '@/components/Alert/Alert.vue'
 import { createMessage } from '@/components/Message/methods'
 import type { FormRules } from './components/Form/types'
+import type { AlertInstance } from './components/Alert/types'
 
+const alertRef = ref<AlertInstance | null>(null)
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
 const dropdownRef = ref<DropdownInstance | null>(null)
@@ -237,6 +251,14 @@ const menuOptions: MenuOption[] = [
   { key: 3, label: 'item3', divided: true },
   { key: 4, label: 'item4' }
 ]
+
+const openAlert = () => { 
+  alertRef.value?.show()
+}
+
+const closeAlert = () => {
+  alertRef.value?.hide()
+}
 
 onMounted(() => {
   const instance = createMessage({
