@@ -8,7 +8,7 @@ export default defineConfig({
   base: '/sharp-ui/',
   description: 'A Vue 3 UI Library',
   // srcDir: 'components',
-  head: [['link', { rel: 'icon', href: '/assets/logo.svg' }]],
+  head: [['link', { rel: 'icon', href: '/sharp-ui/assets/logo.svg' }]],
   markdown: {
     // 配置Markdown处理的插件。
     // 该函数无返回值。
