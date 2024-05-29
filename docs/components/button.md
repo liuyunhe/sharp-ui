@@ -1,5 +1,5 @@
 ---
-title: Button | Sharp-UI
+title: Button
 description: Button 组件的文档
 ---
 

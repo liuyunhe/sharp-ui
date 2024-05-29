@@ -3,9 +3,12 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "SharpUI"
+  text: "网站快速成型工具"
+  tagline: 一套为开发者、设计师和产品经理准备的基于 Vue 3.0 的桌面端组件库
+  image:
+    src: /assets/image.svg
+    alt: VitePress
   actions:
     - theme: brand
       text: Markdown Examples

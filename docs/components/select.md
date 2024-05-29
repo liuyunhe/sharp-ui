@@ -1,5 +1,5 @@
 ---
-title: Select | Sharp-UI
+title: Select
 description: Select 组件的文档
 ---
 ## 选择器

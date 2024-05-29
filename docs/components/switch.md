@@ -1,5 +1,5 @@
 ---
-title: Switch | Sharp-UI
+title: Switch
 description: Switch 组件的文档
 ---
 
