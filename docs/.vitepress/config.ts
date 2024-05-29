@@ -5,11 +5,10 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'SharpUI',
+  base: '/sharp-ui/',
   description: 'A Vue 3 UI Library',
   // srcDir: 'components',
-  head: [
-    ['link', { rel: 'icon', href: '/assets/logo.svg' }]
-  ],
+  head: [['link', { rel: 'icon', href: '/assets/logo.svg' }]],
   markdown: {
     // 配置Markdown处理的插件。
     // 该函数无返回值。
