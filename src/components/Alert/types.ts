@@ -12,5 +12,6 @@ export interface AlertEvents {
 }
 
 export interface AlertInstance {
-  close: () => void
+  show: () => void
+  hide: () => void
 }
