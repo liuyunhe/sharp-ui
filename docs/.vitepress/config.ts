@@ -4,9 +4,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { fileURLToPath, URL } from 'node:url'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'My Awesome Project',
-  description: 'A VitePress Site',
+  title: 'SharpUI',
+  description: 'A Vue 3 UI Library',
   // srcDir: 'components',
+  head: [
+    ['link', { rel: 'icon', href: '/assets/logo.svg' }]
+  ],
   markdown: {
     // 配置Markdown处理的插件。
     // 该函数无返回值。
@@ -27,6 +30,10 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: {
+      src: '/assets/logo.svg',
+      alt: 'SharpUI'
+    },
     search: {
       provider: 'local'
     },
@@ -45,12 +52,12 @@ export default defineConfig({
       {
         text: 'Basic',
         items: [
+          { text: 'Alert', link: '/components/alert' },
           { text: 'Button', link: '/components/button' },
           { text: 'Input', link: '/components/input' },
           { text: 'Switch', link: '/components/switch' },
           { text: 'Select', link: '/components/select' },
-          { text: 'Form', link: '/components/form' },
-          { text: 'Alert', link: '/components/alert' }
+          { text: 'Form', link: '/components/form' }
         ]
       }
     ],
