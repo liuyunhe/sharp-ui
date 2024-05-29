@@ -1,5 +1,5 @@
 ---
-title: Form | V-Element
+title: Form
 description: Form 组件的文档
 ---
 
