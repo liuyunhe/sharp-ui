@@ -54,6 +54,6 @@ description: Switch 组件的文档
 
 ## Switch Events
 
-| 事件名称                                    | 说明                                                                                      | 会调参数                 |
+| 事件名称                                    | 说明                                                                                      | 回调参数                 |
 | ------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------ |
-| change &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 开关状态发生变化时的回调函数 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 当前状态的值&emsp;&emsp; |
+| change &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  | 开关状态发生变化时的回调函数 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 当前状态的值&emsp;&emsp; |

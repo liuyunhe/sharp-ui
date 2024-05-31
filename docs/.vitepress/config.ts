@@ -37,8 +37,9 @@ export default defineConfig({
       provider: 'local'
     },
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '首页', link: '/' },
+      { text: '快速开始', link: '/markdown-examples' },
+      { text: '指南', link: '/api-examples' }
     ],
     sidebar: [
       {
@@ -64,6 +65,10 @@ export default defineConfig({
       // level: [2, 3],
       label: '页面导航'
     },
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2022-present liuyunhe'
+    },
+    socialLinks: [{ icon: 'github', link: 'https://github.com/liuyunhe/sharp-ui' }]
   }
 })
