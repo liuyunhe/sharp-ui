@@ -35,3 +35,25 @@ description: Switch 组件的文档
 使用 **active-text** 属性与 **inactive-text** 属性来设置开关的文字描述。
 
 <preview path="../demo/Switch/Text.vue" title="支持文字描述" description="Switch 文字描述"></preview>
+
+## Switch Attributes
+
+| 参数                                         | 说明                                                    | 类型                      | 可选值                | 默认值  |
+| -------------------------------------------- | ------------------------------------------------------- | ------------------------- | --------------------- | ------- |
+| v-model / value                              | 绑定值                                                  | boolean                   | —                     | false   |
+| disabled&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 是否禁用                                                | boolean                   | —                     | false   |
+| size                                         | 开关大小，可选值为`large`、`small`、`default`或者不设置 | string                    | large, small, default | —       |
+| active-text                                  | 打开时的文字描述                                        | string                    | —                     | —       |
+| inactive-text                                | 关闭时的文字描述                                        | string                    | —                     | —       |
+| active-color                                 | 打开时的背景色                                          | string                    | —                     | #409EFF |
+| inactive-color                               | 关闭时的背景色                                          | string                    | —                     | #C0CCDA |
+| active-value                                 | 打开时的值                                              | boolean / string / number | —                     | true    |
+| inactive-value                               | 关闭时的值                                              | boolean / string / number | —                     | false   |
+| name                                         | 原生 `name` 属性                                        | string                    | —                     | —       |
+| validate-event                               | 输入时是否触发表单的校验                                | boolean                   | —                     | true    |
+
+## Switch Events
+
+| 事件名称                                    | 说明                                                                                      | 会调参数                 |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------ |
+| change &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 开关状态发生变化时的回调函数 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 当前状态的值&emsp;&emsp; |
