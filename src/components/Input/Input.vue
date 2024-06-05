@@ -144,11 +144,13 @@ const NOOP = () => {} // 空操作函数
 
 // 事件处理器：输入、变化、聚焦、失焦
 const handleInput = (e: Event) => {
+  console.log("🚀 ~ handleInput ~ e:", e)
   emits('update:modelValue', innerValue.value)
   emits('input', innerValue.value)
   runValidation('input')
 }
 const handleChange = (e: Event) => {
+  console.log("🚀 ~ handleChange ~ e:", e)
   emits('change', innerValue.value)
   runValidation('change')
 }

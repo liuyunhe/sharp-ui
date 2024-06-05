@@ -24,7 +24,7 @@ import { ref } from 'vue'
 defineOptions({
   name: 'S-Alert'
 })
-const props = withDefaults(defineProps<AlertProps>(), {
+withDefaults(defineProps<AlertProps>(), {
   type: 'info',
   closeable: true
 })
