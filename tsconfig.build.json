@@ -1,0 +1,21 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["src/index.ts", "src/components/**/*", "src/hooks/**/*"],
+  "exclude": [
+    "src/**/__tests__/*",
+    "src/components/**/*.test.ts",
+    "src/components/**/*.test.tsx",
+    "src/components/**/*.spec.ts",
+    "src/components/**/*.tsx"
+  ],
+  
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

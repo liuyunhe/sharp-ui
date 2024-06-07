@@ -88,7 +88,7 @@ const findOption = (value: string) => {
 }
 // 定义组件内部使用的props、emits和初始状态
 defineOptions({
-  name: 'S-Select'
+  name: 'SSelect'
 })
 const props = withDefaults(defineProps<SelectProps>(), {
   disabled: false,

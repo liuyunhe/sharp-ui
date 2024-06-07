@@ -36,7 +36,7 @@ import { getLastBottomOffset } from './methods'
 import useEventListener from '@/hooks/useEventListener'
 
 defineOptions({
-  name: 'S-Message'
+  name: 'SMessage'
 })
 
 const props = withDefaults(defineProps<MessageProps>(), {

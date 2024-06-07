@@ -37,7 +37,7 @@ import RenderVnode from '@/components/Common/RenderVnode'
 import { ref, type Ref } from 'vue'
 
 defineOptions({
-  name: 'S-Dropdown'
+  name: 'SDropdown'
 })
 
 const porps = withDefaults(defineProps<DropdownProps>(), { hideAfterClick: true })

@@ -22,9 +22,9 @@ import Icon from '@/components/Icon/Icon.vue'
 import type { AlertEvents, AlertInstance, AlertProps } from './types'
 import { ref } from 'vue'
 defineOptions({
-  name: 'S-Alert'
+  name: 'SAlert'
 })
-const props = withDefaults(defineProps<AlertProps>(), {
+withDefaults(defineProps<AlertProps>(), {
   type: 'info',
   closeable: true
 })

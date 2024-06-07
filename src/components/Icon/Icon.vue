@@ -11,7 +11,7 @@ import type { FontAwesomeIconProps } from './types'
 import { computed } from 'vue'
 
 defineOptions({
-  name: 'S-Icon',
+  name: 'SIcon',
   inheritAttrs: false
 })
 const props = defineProps<FontAwesomeIconProps>()
