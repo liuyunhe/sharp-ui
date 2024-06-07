@@ -6,7 +6,7 @@
 
 
 ```bash
-npm i @vikingmute/v-element --save
+npm i @shepardliu/sharp-ui --save
 ```
 
 ### 开始使用
@@ -16,32 +16,32 @@ npm i @vikingmute/v-element --save
 
 ```js
 // 引入所有组件
-import VElement from '@vikingmute/v-element'
+import SharpUI from '@shepardliu/sharp-ui'
 // 引入样式
-import '@vikingmute/v-element/dist/style.css'
+import '@shepardliu/sharp-ui/dist/index.css'
 
 import App from './App.vue'
 // 全局使用
-createApp(App).use(VElement).mount('#app')
+createApp(App).use(SharpUI).mount('#app')
 ```
 
 ```vue
 <template>
-  <vk-button>我是 VkButton</vk-button>
+  <s-button>我是Button</s-button>
 </template>
 ```
 
 **单个导入**
 
-V Element 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
+sharp-ui 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 
 
 ```vue
 <template>
-  <Button>我是 VkButton</Button>
+  <Button>我是Button</Button>
 </template>
 <script>
-  import { Button } from ' @vikingmute/v-element'
+  import { Button } from '@shepardliu/sharp-ui'
   export default {
     components: { Button },
   }
