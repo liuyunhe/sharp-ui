@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import type { SwitchProps, SwitchEmits } from './types'
-defineOptions({ name: 's-switch', inheritAttrs: false })
+defineOptions({ name: 'SSwitch', inheritAttrs: false })
 
 // 定义组件接收的 props
 const props = withDefaults(defineProps<SwitchProps>(), {

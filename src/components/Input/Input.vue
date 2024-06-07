@@ -106,7 +106,7 @@ import { type InputProps, type InputEmits } from './types' // 输入组件的类
 import Icon from '@/components/Icon/Icon.vue' // 图标组件导入
 import { formItemContextKey } from '../Form/types'; // 表单项上下文密钥导入
 defineOptions({
-  name: 'S-Input', // 组件名称
+  name: 'SInput', // 组件名称
   inheritAttrs: false // 不继承父组件的属性
 })
 

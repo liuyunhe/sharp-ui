@@ -29,7 +29,7 @@ import type { ButtonProps } from './types'
 import Icon from '../Icon/Icon.vue'
 
 defineOptions({
-  name: 'S-Button'
+  name: 'SButton'
 })
 /**
  * 默认属性

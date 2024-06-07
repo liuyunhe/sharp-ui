@@ -34,7 +34,7 @@ import { computed, inject } from 'vue'
 import { collapseContextKey, type CollapseItemProps } from './types'
 import Icon from '../Icon/Icon.vue'
 defineOptions({
-  name: 'S-CollapseItem'
+  name: 'SCollapseItem'
 })
 
 // 获取传入的组件属性

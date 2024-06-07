@@ -21,7 +21,7 @@ import useClickOutside from '@/hooks/useClickOutside'
 import { debounce } from 'lodash-es'
 
 defineOptions({
-  name: 'S-Tooltip'
+  name: 'STooltip'
 })
 
 const props = withDefaults(defineProps<TooltipProps>(), {

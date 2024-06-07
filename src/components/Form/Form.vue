@@ -18,7 +18,7 @@ import { formContextKey } from './types'
 // 定义组件属性
 const props = defineProps<FormProps>()
 defineOptions({
-  name: 'S-Form'
+  name: 'SForm'
 })
 
 // 维护一个表单域数组

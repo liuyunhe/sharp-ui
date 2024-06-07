@@ -5,7 +5,7 @@ import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from '../Tooltip/types'
 
 export default defineComponent({
-  name: 'S-Dropdown',
+  name: 'SDropdown',
   props: {
     placement: {
       type: String as PropType<Placement>,

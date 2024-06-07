@@ -22,7 +22,7 @@ import Icon from '@/components/Icon/Icon.vue'
 import type { AlertEvents, AlertInstance, AlertProps } from './types'
 import { ref } from 'vue'
 defineOptions({
-  name: 'S-Alert'
+  name: 'SAlert'
 })
 withDefaults(defineProps<AlertProps>(), {
   type: 'info',

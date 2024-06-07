@@ -36,7 +36,7 @@ import type {
 
 // 定义组件选项
 defineOptions({
-  name: 'S-Form-Item'
+  name: 'SFormItem'
 })
 
 // 获取组件props
