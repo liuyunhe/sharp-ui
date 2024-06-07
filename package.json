@@ -49,7 +49,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "publish": "pnpm publish --access=public"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
