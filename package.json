@@ -1,25 +1,43 @@
 {
-  "name": "sharp-ui",
-  "description": "SharpUI is a UI library based on Vue3.",
-  "author": "sharpui team",
+  "name": "@shepardliu/sharp-ui",
+  "description": "sharp-ui is a UI library based on Vue3.",
+  "author": "Shepard Liu",
   "license": "MIT",
-  "version": "0.0.0",
-  "private": true,
+  "keywords": [
+    "Component",
+    "Vue3",
+    "UI"
+  ],
+  "version": "1.0.0",
+  "homepage": "https://liuyunhe.github.io/sharp-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuyunhe/sharp-ui"
+  },
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/sharp-ui.umd.cjs",
-  "module": "./dist/sharp-ui.esm.js",
+  "sideEffects": [
+    "dist/index.css"
+  ],
+  "main": "./dist/umd/sharp-ui.umd.cjs",
+  "module": "./dist/es/sharp-ui.js",
+  "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/sharp-ui.esm.js",
-      "require": "./dist/sharp-ui.umd.cjs"
+      "import": "./dist/es/sharp-ui.js",
+      "require": "./dist/umd/sharp-ui.umd.cjs",
+      "types": "./dist/types/src/index.d.ts"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "pnpm run build-only && pnpm run move-style",
     "preview": "vite preview",
     "build-only": "run-p build-es build-umd",
     "build-umd": "vite build --config vite.umd.config.ts",
@@ -30,7 +48,8 @@
     "format": "prettier --write src/",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -39,7 +58,9 @@
     "@popperjs/core": "^2.11.8",
     "async-validator": "^4.2.5",
     "axios": "^1.6.8",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.21"
+  },
+  "peerDependencies": {
     "vue": "^3.4.21"
   },
   "devDependencies": {
@@ -58,6 +79,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "jsdom": "^24.0.0",
+    "move-file-cli": "^3.0.0",
     "npm-run-all2": "^6.1.2",
     "postcss-color-mix": "^1.1.0",
     "postcss-each": "^1.1.0",
@@ -72,6 +94,7 @@
     "vite-plugin-vue-devtools": "^7.0.25",
     "vitepress": "^1.1.4",
     "vitest": "^1.5.2",
+    "vue": "^3.4.21",
     "vue-tsc": "^2.0.11"
   }
 }
