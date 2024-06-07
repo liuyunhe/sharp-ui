@@ -29,7 +29,15 @@ export default defineConfig({
       formats: ['es']
     },
     rollupOptions: {
-      external: ['vue', '@fortawesome/fontawesome-svg-core', '@fortawesome/free-solid-svg-icons', '@fortawesome/vue-fontawesome', 'async-validator', '@popperjs/core', 'axios'],
+      external: [
+        'vue',
+        '@fortawesome/fontawesome-svg-core',
+        '@fortawesome/free-solid-svg-icons',
+        '@fortawesome/vue-fontawesome',
+        'async-validator',
+        '@popperjs/core',
+        'axios'
+      ],
       output: {
         assetFileNames: (chunkInfo) => {
           if (chunkInfo.name === 'style.css') {
