@@ -42,6 +42,7 @@ const install = (app: App) => {
 
 export {
   install,
+  Alert,
   Button,
   Collapse,
   CollapseItem,
