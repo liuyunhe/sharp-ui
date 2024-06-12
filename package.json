@@ -23,12 +23,12 @@
   ],
   "main": "./dist/umd/sharp-ui.umd.cjs",
   "module": "./dist/es/sharp-ui.js",
-  "types": "./dist/types/src/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/es/sharp-ui.js",
       "require": "./dist/umd/sharp-ui.umd.cjs",
-      "types": "./dist/types/src/index.d.ts"
+      "types": "./dist/types/index.d.ts"
     },
     "./dist/": {
       "import": "./dist/",

@@ -12,7 +12,8 @@ export default defineConfig({
     vueJsx(),
     dts({
       tsconfigPath: './tsconfig.build.json',
-      outDir: 'dist/types'
+      outDir: 'dist/types',
+      insertTypesEntry: true
     })
   ],
   resolve: {
