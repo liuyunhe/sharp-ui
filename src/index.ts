@@ -1,5 +1,4 @@
-import type { App } from 'vue'
-
+import type { App } from 'vue-demi'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import Alert from '@/components/Alert'
@@ -58,6 +57,17 @@ export {
   createMessage,
   closeMessageAll
 }
+export * from './components/Alert'
+export * from './components/Button'
+export * from './components/Collapse'
+export * from './components/Dropdown'
+export * from './components/Form'
+export * from './components/Icon'
+export * from './components/Message'
+export * from './components/Input'
+export * from './components/Select'
+export * from './components/Switch'
+export * from './components/Tooltip'
 
 export default {
   install
