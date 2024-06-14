@@ -1,8 +1,8 @@
-## sharp-ui
+# sharp-ui
 
 **sharp-ui** 使用最新的 Vue3.4 和 TS 打造的一套网站快速成型工具，地址： [https://liuyunhe.github.io/sharp-ui/](https://liuyunhe.github.io/sharp-ui/)
 
-### 安装
+## 安装
 
 
 ```bash
@@ -11,7 +11,7 @@ npm i @shepardliu/sharp-ui --save
 
 ### 开始使用
 
-**全局使用**
+>**全局使用**
 
 
 ```js
@@ -31,7 +31,7 @@ createApp(App).use(SharpUI).mount('#app')
 </template>
 ```
 
-**单个导入**
+>**单个导入**
 
 sharp-ui 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 
