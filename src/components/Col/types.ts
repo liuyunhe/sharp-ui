@@ -1,4 +1,3 @@
-import type { ExtractPropTypes } from 'vue'
 import type Col from './Col.vue'
 
 export type ColSizeObject = {
