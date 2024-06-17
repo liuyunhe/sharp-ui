@@ -9,11 +9,11 @@ import { computed, inject } from 'vue'
 import { isNumber, isObject } from '@/utils/types'
 import { useNamespace } from '@/hooks/useNameSpace'
 import { rowContextKey } from '@/components/Row/constants'
-import type { ColProps } from './types'
+import type { ColProps, ColSizeObject } from './types'
 import type { CSSProperties } from 'vue'
 
 defineOptions({
-  name: 'SCol',
+  name: 'SCol'
 })
 
 const props = withDefaults(defineProps<ColProps>(), {
@@ -21,12 +21,7 @@ const props = withDefaults(defineProps<ColProps>(), {
   span: 24,
   offset: 0,
   pull: 0,
-  push: 0,
-  xs: undefined,
-  sm: undefined,
-  md: undefined,
-  lg: undefined,
-  xl: undefined,
+  push: 0
 })
 
 const ns = useNamespace('col')
@@ -58,11 +53,9 @@ const colKls = computed(() => {
     if (isNumber(props[size])) {
       classes.push(ns.b(`${size}-${props[size]}`))
     } else if (isObject(props[size])) {
-      Object.entries(props[size]).forEach(([prop, sizeProp]) => {
+      Object.entries(props[size] as ColSizeObject).forEach(([prop, sizeProp]) => {
         classes.push(
-          prop !== 'span'
-            ? ns.b(`${size}-${prop}-${sizeProp}`)
-            : ns.b(`${size}-${sizeProp}`)
+          prop !== 'span' ? ns.b(`${size}-${prop}-${sizeProp}`) : ns.b(`${size}-${sizeProp}`)
         )
       })
     }
