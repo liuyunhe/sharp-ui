@@ -27,6 +27,20 @@
       </Tooltip>
     </div>
   </header>
+  <Row :gutter="20" justify="space-evenly" align="middle" style="height: 100px;">
+   <Col  :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+    <div style="background: #d3dce6;">123</div>
+  </Col>  
+   <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
+    <div style="background: #d3dce6;">456</div>
+  </Col>
+   <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
+    <div style="background: #d3dce6;">789</div>
+  </Col>
+   <Col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+    <div style="background: #d3dce6;">101112</div>
+  </Col>
+  </Row>
   <div style="margin-bottom: 20px">
     <Button type="primary" @click="open">打开Tooltip</Button>
     <Button @click="close">关闭Tooltip</Button>
@@ -164,6 +178,8 @@ import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
 import Alert from '@/components/Alert/Alert.vue'
+import Row from '@/components/Row/Row.vue'
+import Col from '@/components/Col/Col.vue'
 import { createMessage } from '@/components/Message/methods'
 import type { FormRules } from './components/Form/types'
 import type { AlertInstance } from './components/Alert/types'

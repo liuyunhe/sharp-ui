@@ -12,13 +12,15 @@ import Input from '@/components/Input'
 import Select from '@/components/Select'
 import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
+import Row from '@/components/Row'
+import Col from '@/components/Col'
 
 import './styles/index.css'
 
 library.add(fas)
 
 const components = [
-  Alert, 
+  Alert,
   Button,
   Collapse,
   CollapseItem,
@@ -30,7 +32,9 @@ const components = [
   Input,
   Select,
   Switch,
-  Tooltip
+  Tooltip,
+  Row,
+  Col
 ]
 
 const install = (app: App) => {
@@ -54,9 +58,12 @@ export {
   Select,
   Switch,
   Tooltip,
+  Row,
+  Col,
   createMessage,
   closeMessageAll
 }
+
 export * from './components/Alert'
 export * from './components/Button'
 export * from './components/Collapse'
@@ -68,6 +75,8 @@ export * from './components/Input'
 export * from './components/Select'
 export * from './components/Switch'
 export * from './components/Tooltip'
+export * from './components/Row'
+export * from './components/Col'
 
 export default {
   install

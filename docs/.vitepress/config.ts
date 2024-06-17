@@ -52,6 +52,7 @@ export default defineConfig({
       {
         text: 'Basic',
         items: [
+          { text: 'Layout', link: '/components/layout' },
           { text: 'Alert', link: '/components/alert' },
           { text: 'Button', link: '/components/button' },
           { text: 'Input', link: '/components/input' },
