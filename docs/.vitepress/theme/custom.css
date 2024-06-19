@@ -3,7 +3,7 @@
   --vp-c-brand-light: var(--s-color-primary-light-3);
   --vp-c-brand-lighter: var(--s-color-primary-light-5);
   --vp-c-brand-dark: var(--s-color-primary-dark-2);
-  --vp-c-brand-darker: #265F99;
+  --vp-c-brand-darker: #265f99;
 
   --component-preview-bg: var(--vp-code-block-bg);
   --component-preview-soft: var(--vp-code-block-bg-light);
@@ -12,6 +12,50 @@
 body {
   color: var(--vp-c-text-1);
 }
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   color: var(--vp-c-text-1);
+}
+
+body .el-message {
+  overflow: visible;
+}
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  font-weight: 400;
+}
+
+.content li {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #99a9bf;
+  list-style: none;
+}
+
+.content li strong {
+  color: #5e6d82;
+  font-weight: 400;
+}
+
+[class*='_sharp-ui_guide_'] {
+  ul,
+  ol {
+    padding-left: 0;
+  }
+}
+
+.VPSidebarItem.level-1 {
+    h3.text{
+     font-size: 12px;
+     color: #999!important;
+  }
 }
