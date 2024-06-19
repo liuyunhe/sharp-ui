@@ -13,10 +13,10 @@ hero:
   actions:
     - theme: brand
       text: 什么是SharpUI?
-      link: /markdown-examples
+      link: /guide/introduce
     - theme: alt
       text: 快速开始
-      link: /api-examples
+      link: /guide/quickstart
     - theme: alt
       text: Github
       link: https://github.com/liuyunhe/sharp-ui
@@ -24,12 +24,12 @@ hero:
 features:
   - title: 指南
     details: 了解设计指南，帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。
-    link: https://github.com/liuyunhe/sharp-ui
+    link: /guide/design
     linkText: 了解更多
     icon: 📝
   - title: 组件
     details: 使用组件 Demo 快速体验交互细节；使用前端框架封装的代码帮助工程师快速开发。
-    link: https://github.com/liuyunhe/sharp-ui
+    link: /components/layout
     linkText: 了解更多
     icon: 📊
   - title: 资源

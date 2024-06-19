@@ -38,27 +38,45 @@ export default defineConfig({
     },
     nav: [
       { text: '首页', link: '/' },
-      { text: '快速开始', link: '/markdown-examples' },
-      { text: '指南', link: '/api-examples' }
+      { text: '指南', link: '/guide/design' },
+      { text: '快速开始', link: '/guide/quickstart' }
     ],
     sidebar: [
       {
-        text: 'Examples1',
+        text: '开发指南',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: '简介', link: '/guide/introduce' },
+          { text: '设计原则', link: '/guide/design' },
+          { text: '快速开始', link: '/guide/quickstart' }
         ]
       },
       {
-        text: 'Basic',
+        text: '组件',
         items: [
-          { text: 'Layout', link: '/components/layout' },
-          { text: 'Alert', link: '/components/alert' },
-          { text: 'Button', link: '/components/button' },
-          { text: 'Input', link: '/components/input' },
-          { text: 'Switch', link: '/components/switch' },
-          { text: 'Select', link: '/components/select' },
-          { text: 'Form', link: '/components/form' }
+          {
+            text: 'Basic',
+            items: [
+              { text: 'Layout', link: '/components/layout' },
+
+              { text: 'Button', link: '/components/button' }
+            ]
+          },
+          {
+            text: 'Form',
+            items: [
+              { text: 'Input', link: '/components/input' },
+              { text: 'Select', link: '/components/select' },
+              { text: 'Switch', link: '/components/switch' },
+              { text: 'Form', link: '/components/form' }
+            ]
+          },
+          {
+            text: 'Notice',
+            items: [
+              { text: 'Alert', link: '/components/alert' },
+              { text: 'Message', link: '/components/message' },
+            ]
+          }
         ]
       }
     ],
@@ -68,7 +86,7 @@ export default defineConfig({
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2022-present liuyunhe'
+      copyright: 'Copyright © 2024-present liuyunhe'
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/liuyunhe/sharp-ui' }]
   }
