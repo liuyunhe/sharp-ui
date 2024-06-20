@@ -44,6 +44,7 @@ export default defineConfig({
     sidebar: [
       {
         text: '开发指南',
+        collapsed: false,
         items: [
           { text: '简介', link: '/guide/introduce' },
           { text: '设计原则', link: '/guide/design' },
@@ -52,13 +53,14 @@ export default defineConfig({
       },
       {
         text: '组件',
+        collapsed: false,
         items: [
           {
             text: 'Basic',
             items: [
               { text: 'Layout', link: '/components/layout' },
-
-              { text: 'Button', link: '/components/button' }
+              { text: 'Button', link: '/components/button' },
+              { text: 'Icon', link: '/components/icon' }
             ]
           },
           {
@@ -74,7 +76,7 @@ export default defineConfig({
             text: 'Notice',
             items: [
               { text: 'Alert', link: '/components/alert' },
-              { text: 'Message', link: '/components/message' },
+              { text: 'Message', link: '/components/message' }
             ]
           }
         ]

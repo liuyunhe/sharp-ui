@@ -22,6 +22,20 @@ p {
   color: var(--vp-c-text-1);
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+  min-height: 25px;
+  min-width: 25px;
+  border: 1px solid #e0e0e0;
+  border-radius: 99px;
+}
+
 body .el-message {
   overflow: visible;
 }
@@ -54,8 +68,8 @@ body .el-message {
 }
 
 .VPSidebarItem.level-1 {
-    h3.text{
-     font-size: 12px;
-     color: #999!important;
+  h3.text {
+    font-size: 12px;
+    color: #999 !important;
   }
 }

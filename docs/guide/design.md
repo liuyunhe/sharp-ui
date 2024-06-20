@@ -6,6 +6,10 @@ title： 设计原则
 
 SharpUI 基于「一致性」、「反馈」、「效率」和「可控」的设计原则，试图建立务实而的工作方式。
 
+<div align=center style="margin: 50px auto;">
+  <img src="/assets/intro-2.svg" align="center" width="300" height="300" alt="intro-2">
+</div>
+
 ## 一致性 Consistency
 
 - **与现实生活一致：** 与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；

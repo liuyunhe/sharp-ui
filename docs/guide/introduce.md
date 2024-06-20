@@ -6,8 +6,8 @@ title： 简介
 
 一套能力全面的基于 Vue 3.0的桌面端组件库。
 
-<div align=center>
-  <img src="/assets/intro-1.svg" align="center" width="300" height="300">
+<div align=center style="margin-top: 40px;margin-bottom:20px">
+  <img src="/assets/intro-4.svg" align="center" width="350" height="350">
 </div>
 
 ## SharpUI的诞生
@@ -18,7 +18,7 @@ SharpUI是一套设计系统的简称。
 SharpUI 的目标, 即通过通用的设计系统去解决产品中的体验问题, 并为产品设计提供指导原则解决业务问题，同时它能够促进设计部门和研发部门之间协作, 成为开发者之间沟通的语言。
 
 ## SharpUI试图建立一种工作模式：
- _<font face="'Apple Color Emoji'" color="#3451b2" size="5">less is more</font>_
+ **_<font face="'Apple Color Emoji'" color="#3451b2" size="5">less is more</font>_**
 
 
 
