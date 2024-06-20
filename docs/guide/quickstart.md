@@ -6,6 +6,10 @@ title： 快速开始
 
 SharpUI 是使用最新的 Vue3.4 和 TS 打造的一套网站快速成型工具。本节将介绍如何在项目中使用 SharpUI
 
+<div align=center>
+  <img src="/assets/intro-1.svg" align="center" width="300" height="300">
+</div>
+
 ## npm 安装
 
 推荐使用 npm 的方式安装，它能更好地和 `vite` 打包工具配合使用。
