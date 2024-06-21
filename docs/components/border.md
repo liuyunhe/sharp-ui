@@ -3,6 +3,9 @@ title: Border 边框
 lang: Border 边框的文档
 ---
 
+
+<ClientOnly>
+
 # Border
 
 我们对边框进行统一规范，可用于按钮、卡片、弹窗等组件里。
@@ -34,3 +37,4 @@ import Shadow from '../demo/Border/Shadow.vue'
 import Border from '../demo/Border/Border.vue'
 import Radius from '../demo/Border/Radius.vue'
 </script> -->
+</ClientOnly>
