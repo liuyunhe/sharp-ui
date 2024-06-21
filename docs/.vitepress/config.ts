@@ -58,31 +58,33 @@ export default defineConfig({
           {
             text: 'Basic',
             items: [
-              { text: 'Layout', link: '/components/layout' },
-              { text: 'Button', link: '/components/button' },
-              { text: 'Icon', link: '/components/icon' }
+              { text: 'Layout 布局', link: '/components/layout' },
+              { text: 'Color 色彩', link: '/components/color' },
+              { text: 'Border 边框', link: '/components/border' },
+              { text: 'Button 按钮', link: '/components/button' },
+              { text: 'Icon 图标', link: '/components/icon' }
             ]
           },
           {
             text: 'Form',
             items: [
-              { text: 'Input', link: '/components/input' },
-              { text: 'Select', link: '/components/select' },
-              { text: 'Switch', link: '/components/switch' },
-              { text: 'Form', link: '/components/form' }
+              { text: 'Input 输入框', link: '/components/input' },
+              { text: 'Select 选择器', link: '/components/select' },
+              { text: 'Switch 开关', link: '/components/switch' },
+              { text: 'Form 表单', link: '/components/form' }
             ]
           },
           {
             text: 'Notice',
             items: [
-              { text: 'Alert', link: '/components/alert' },
-              { text: 'Message', link: '/components/message' }
+              { text: 'Alert 警告', link: '/components/alert' },
+              { text: 'Message 消息提示', link: '/components/message' },
             ]
           },
           {
             text: 'Navigation',
             items: [
-              { text: 'Dropdown', link: '/components/dropdown' }
+              { text: 'Dropdown 下拉菜单', link: '/components/dropdown' }
             ]
           }
         ]
