@@ -64,17 +64,27 @@ import NeutralColor from '../demo/Color/NeutralColor.vue'
 
 Element 主要品牌颜色是鲜艳、友好的蓝色。
 
-<MainColor />
+<ClientOnly>
+  <MainColor />
+</ClientOnly>
+
+
 
 ## 辅助色
 
 除了主色外的场景色，需要在不同的场景中使用（例如危险色表示危险的操作）。
 
-<SecondaryColors/>
+<ClientOnly>
+  <SecondaryColors/>
+</ClientOnly>
+
+
 
 
 ## 中性色
 
 中性色用于文本、背景和边框颜色。通过运用不同的中性色，来表现层次结构。
 
-<NeutralColor/>
+<ClientOnly>
+  <NeutralColor/>
+</ClientOnly>
