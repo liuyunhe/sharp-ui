@@ -78,6 +78,12 @@ export default defineConfig({
               { text: 'Alert', link: '/components/alert' },
               { text: 'Message', link: '/components/message' }
             ]
+          },
+          {
+            text: 'Navigation',
+            items: [
+              { text: 'Dropdown', link: '/components/dropdown' }
+            ]
           }
         ]
       }
