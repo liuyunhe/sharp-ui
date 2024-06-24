@@ -5,12 +5,12 @@ import Icon from '@/components/Icon/Icon.vue'
 const test = ref('')
 </script>
 <template>
-  <Input v-model="test" placeholder="prepend append">
+  <Input class="input-demo" v-model="test" placeholder="prepend append">
     <template #prepend>Https://</template>
     <template #append>.com</template>
   </Input>
-
-  <Input v-model="test" placeholder="prefix suffix">
+  <div class="line"></div>
+  <Input class="input-demo" v-model="test" placeholder="prefix suffix">
     <template #prefix>
       <Icon icon="fa-user" />
     </template>
@@ -19,3 +19,8 @@ const test = ref('')
     </template>
   </Input>
 </template>
+<style scoped>
+.line {
+  margin-bottom: 20px;
+}
+</style>
