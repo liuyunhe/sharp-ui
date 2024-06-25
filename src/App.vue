@@ -1,15 +1,9 @@
 <template>
   <header>
-    <div style="margin-bottom: 20px;width: 100%;">
-      <Alert
-        ref="alertRef"
-        content="成功提示的文案"
-        type="success"
-        effect="dark"
-        >
-      </Alert>
-      <Button type="primary" @click="openAlert">打开Alert</BUtton>
-      <Button @click="closeAlert">关闭Alert</BUtton>
+    <div style="margin-bottom: 20px; width: 100%">
+      <Alert ref="alertRef" content="成功提示的文案" type="success" effect="dark"> </Alert>
+      <Button type="primary" @click="openAlert">打开Alert</Button>
+      <Button @click="closeAlert">关闭Alert</Button>
     </div>
     <div style="margin-bottom: 20px">
       <Tooltip
@@ -27,20 +21,23 @@
       </Tooltip>
     </div>
   </header>
-  <Row :gutter="20" justify="space-evenly" align="middle" style="height: 100px;">
-   <Col  :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-    <div style="background: #d3dce6;">123</div>
-  </Col>  
-   <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-    <div style="background: #d3dce6;">456</div>
-  </Col>
-   <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-    <div style="background: #d3dce6;">789</div>
-  </Col>
-   <Col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-    <div style="background: #d3dce6;">101112</div>
-  </Col>
+  <Row :gutter="20" justify="space-evenly" align="middle" style="height: 100px">
+    <Col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+      <div style="background: #d3dce6">123</div>
+    </Col>
+    <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
+      <div style="background: #d3dce6">456</div>
+    </Col>
+    <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
+      <div style="background: #d3dce6">789</div>
+    </Col>
+    <Col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+      <div style="background: #d3dce6">101112</div>
+    </Col>
   </Row>
+  <div style="margin-bottom: 20px">
+    <Link underline icon="pen" type="danger" href="https://www.baidu.com" target="_blank">测试</Link>
+  </div>
   <div style="margin-bottom: 20px">
     <Button type="primary" @click="open">打开Tooltip</Button>
     <Button @click="close">关闭Tooltip</Button>
@@ -180,6 +177,7 @@ import FormItem from '@/components/Form/FormItem.vue'
 import Alert from '@/components/Alert/Alert.vue'
 import Row from '@/components/Row/Row.vue'
 import Col from '@/components/Col/Col.vue'
+import Link from '@/components/Link/Link.vue'
 import { createMessage } from '@/components/Message/methods'
 import type { FormRules } from './components/Form/types'
 import type { AlertInstance } from './components/Alert/types'
@@ -268,7 +266,7 @@ const menuOptions: MenuOption[] = [
   { key: 4, label: 'item4' }
 ]
 
-const openAlert = () => { 
+const openAlert = () => {
   alertRef.value?.show()
 }
 

@@ -14,6 +14,7 @@ import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
 import Row from '@/components/Row'
 import Col from '@/components/Col'
+import Link from '@/components/Link'
 
 import './styles/index.css'
 
@@ -34,7 +35,8 @@ const components = [
   Switch,
   Tooltip,
   Row,
-  Col
+  Col,
+  Link
 ]
 
 const install = (app: App) => {
@@ -60,6 +62,7 @@ export {
   Tooltip,
   Row,
   Col,
+  Link,
   createMessage,
   closeMessageAll
 }
@@ -77,6 +80,7 @@ export * from './components/Switch'
 export * from './components/Tooltip'
 export * from './components/Row'
 export * from './components/Col'
+export * from './components/Link'
 
 export default {
   install
