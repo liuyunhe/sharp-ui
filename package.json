@@ -23,10 +23,6 @@
   "sideEffects": [
     "dist/index.css"
   ],
-  "workspaces": [
-    "src/*",
-    "docs"
-  ],
   "main": "./dist/umd/sharp-ui.umd.cjs",
   "module": "./dist/es/sharp-ui.js",
   "types": "./dist/types/index.d.ts",
@@ -71,7 +67,6 @@
     "publishOnly": "pnpm publish --access=public"
   },
   "dependencies": {
-    "@shepardliu/sharp-ui": "workspace:*",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.6",
