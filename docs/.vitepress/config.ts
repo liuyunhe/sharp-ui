@@ -62,7 +62,8 @@ export default defineConfig({
               { text: 'Color 色彩', link: '/components/color' },
               { text: 'Border 边框', link: '/components/border' },
               { text: 'Button 按钮', link: '/components/button' },
-              { text: 'Icon 图标', link: '/components/icon' }
+              { text: 'Icon 图标', link: '/components/icon' },
+              { text: 'Link 文字链接', link: '/components/link' }
             ]
           },
           {
@@ -78,14 +79,16 @@ export default defineConfig({
             text: 'Notice',
             items: [
               { text: 'Alert 警告', link: '/components/alert' },
-              { text: 'Message 消息提示', link: '/components/message' },
+              { text: 'Message 消息提示', link: '/components/message' }
             ]
           },
           {
             text: 'Navigation',
-            items: [
-              { text: 'Dropdown 下拉菜单', link: '/components/dropdown' }
-            ]
+            items: [{ text: 'Dropdown 下拉菜单', link: '/components/dropdown' }]
+          },
+          {
+            text: 'Others',
+            items: [{ text: 'Collapse 折叠面板', link: '/components/collapse' }]
           }
         ]
       }

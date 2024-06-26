@@ -34,6 +34,12 @@
     }
     &.s-link--default {
       &:hover:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 0;
+        bottom: 0;
         border-bottom: 1px solid var(--s-color-primary);
       }
     }
@@ -41,8 +47,12 @@
   &.is-disabled {
     color: var(--s-button-disabled-bg-color);
     cursor: not-allowed;
+    &.s-link--default{
+      color: #c0c4cc;
+    }
   }
   & [class*='s-icon'] {
+    
     & + span {
       margin-left: 5px;
     }
