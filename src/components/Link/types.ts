@@ -1,4 +1,4 @@
-import type Link from './link.vue'
+import type Link from './Link.vue'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 export interface LinkProps {
   type?: 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default'
