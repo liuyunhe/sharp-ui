@@ -15,6 +15,8 @@ import Tooltip from '@/components/Tooltip'
 import Row from '@/components/Row'
 import Col from '@/components/Col'
 import Link from '@/components/Link'
+import { Container, Aside, Footer, Header, Main } from '@/components/Container'
+
 
 import './styles/index.css'
 
@@ -36,7 +38,12 @@ const components = [
   Tooltip,
   Row,
   Col,
-  Link
+  Link,
+  Container,
+  Aside,
+  Footer,
+  Header,
+  Main
 ]
 
 const install = (app: App) => {
@@ -63,6 +70,11 @@ export {
   Row,
   Col,
   Link,
+  Container,
+  Aside,
+  Footer,
+  Header,
+  Main,
   createMessage,
   closeMessageAll
 }
@@ -81,6 +93,7 @@ export * from './components/Tooltip'
 export * from './components/Row'
 export * from './components/Col'
 export * from './components/Link'
+export * from './components/Container'
 
 export default {
   install

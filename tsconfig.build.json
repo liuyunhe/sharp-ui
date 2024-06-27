@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["src/index.ts", "src/components/**/*", "src/hooks/**/*","src/utils/*"],
+  "include": ["src/index.ts", "src/components/**/*", "src/hooks/**/*","src/utils/*","src/utils/**/*"],
   "exclude": [
     "src/**/__tests__/*",
     "src/components/**/*.test.ts",

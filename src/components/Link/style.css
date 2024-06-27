@@ -60,7 +60,7 @@
 
   &.s-link--default {
     &:after {
-      border-color: getCssVar('link', 'hover-text-color');
+      border-color: var(--s-link-hover-text-color);
     }
   }
 }

@@ -59,6 +59,7 @@ export default defineConfig({
             text: 'Basic',
             items: [
               { text: 'Layout 布局', link: '/components/layout' },
+              { text: 'Container 布局容器', link: '/components/container' },
               { text: 'Color 色彩', link: '/components/color' },
               { text: 'Border 边框', link: '/components/border' },
               { text: 'Button 按钮', link: '/components/button' },

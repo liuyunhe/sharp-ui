@@ -49,21 +49,14 @@ app.mount('#app')
 接下来，如果你只希望引入部分组件，比如 Button 和 Select，那么需要在 main.js 中写入以下内容：
 
 ```js
-import Vue from 'vue';
+import { createApp } from 'vue'
 import { Button, Select } from '@shepardliu/sharp-ui';
 import App from './App.vue';
 
-Vue.component(Button.name, Button);
-Vue.component(Select.name, Select);
-/* 或写为
- * Vue.use(Button)
- * Vue.use(Select)
- */
-
-new Vue({
-  el: '#app',
-  render: h => h(App)
-});
+const app = createApp(App)
+app.component(Button.name, Button);
+app.component(Select.name, Select);
+app.mount('#app')
 ```
 
 ## 开始使用
