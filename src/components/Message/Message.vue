@@ -15,6 +15,7 @@
     @mouseleave="startTimer"
   >
     <div class="s-message__content">
+      <Icon class="s-message__icon" :icon="DEFAULT_ICON[type]" />
       <slot>
         <RenderVnode v-if="message" :vNode="message" />
       </slot>
@@ -28,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { type MessageProps } from './types'
+import { type MessageProps,DEFAULT_ICON } from './types'
 import Icon from '@/components/Icon/Icon.vue'
 import RenderVnode from '@/components/Common/RenderVnode'
 import { computed, onMounted, ref, getCurrentInstance } from 'vue'
