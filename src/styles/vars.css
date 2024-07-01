@@ -60,6 +60,7 @@
   --s-font-size-extra-small: 12px;
   --s-font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", Arial, sans-serif;
   --s-font-weight-primary: 500;
+  --s-font-line-height-primary: 24px;
 
   /*disabled*/
   --s-disabled-bg-color: var(--s-fill-color-light);
@@ -76,4 +77,12 @@
   --s-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.12);
   --s-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),0px 12px 32px rgba(0, 0, 0, 0.12),0px 8px 16px -8px rgba(0, 0, 0, 0.16);
 
+  /*overlay*/
+  --s-overlay-color: rgba(0, 0, 0, .8);
+  --s-overlay-color-light: rgba(0, 0, 0, .7);
+  --s-overlay-color-lighter: rgba(0, 0, 0, .5);
+
+  /*mask*/
+  --s-mask-color: rgba(255, 255, 255, .9);
+  --s-mask-color-extra-light: rgba(255, 255, 255, .3);
 }

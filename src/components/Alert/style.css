@@ -19,6 +19,9 @@
   display: flex;
   align-items: center;
   transition: top var(--s-transition-duration), opacity var(--s-transition-duration), transform var(--s-transition-duration);
+  .s-alert__icon{
+    color: var(--s-alert-text-color);
+  }
   .s-alert__content {
     color: var(--s-alert-text-color);
     overflow-wrap: anywhere;
@@ -61,4 +64,8 @@
       --s-icon-color: var(--s-color-white);
     }
   }
+}
+.s-alert-fade-enter-from,
+.s-alert-fade-leave-active {
+  opacity: 0;
 }

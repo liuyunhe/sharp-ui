@@ -104,7 +104,7 @@
 import { computed, inject, nextTick, ref, useAttrs, watch } from 'vue'
 import { type InputProps, type InputEmits } from './types' // 输入组件的类型声明
 import Icon from '@/components/Icon/Icon.vue' // 图标组件导入
-import { formItemContextKey } from '../Form/types'; // 表单项上下文密钥导入
+import { formItemContextKey } from '../Form/types' // 表单项上下文密钥导入
 defineOptions({
   name: 'SInput', // 组件名称
   inheritAttrs: false // 不继承父组件的属性
@@ -124,7 +124,7 @@ const passwordVisible = ref(false) // 密码可见性标志
 const inputRef = ref<HTMLInputElement>()
 
 // 表单项验证上下文
-const formItemContext = inject(formItemContextKey)
+const formItemContext = inject(formItemContextKey,null)
 const runValidation = (trigger?: string) => {
   formItemContext?.validate(trigger).catch((e) => console.log(e.errors))
 }
@@ -144,13 +144,13 @@ const NOOP = () => {} // 空操作函数
 
 // 事件处理器：输入、变化、聚焦、失焦
 const handleInput = (e: Event) => {
-  console.log("🚀 ~ handleInput ~ e:", e)
+  console.log('🚀 ~ handleInput ~ e:', e)
   emits('update:modelValue', innerValue.value)
   emits('input', innerValue.value)
   runValidation('input')
 }
 const handleChange = (e: Event) => {
-  console.log("🚀 ~ handleChange ~ e:", e)
+  console.log('🚀 ~ handleChange ~ e:', e)
   emits('change', innerValue.value)
   runValidation('change')
 }

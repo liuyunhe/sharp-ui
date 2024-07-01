@@ -1,4 +1,5 @@
 import type { VNode, ComponentInternalInstance } from 'vue'
+import type Message from './Message.vue'
 
 /**
  * MessageProps 定义了消息组件的属性
@@ -44,3 +45,18 @@ export interface MessageContext {
  * CreateMessageProps 定义了创建消息组件时的属性，排除了 onDestory、id 和 zIndex
  */
 export type CreateMessageProps = Omit<MessageProps, 'onDestory' | 'id' | 'zIndex'>
+
+export type MessageInstance = InstanceType<typeof Message>
+
+export interface MessageConfigContext {
+  max?: number
+}
+
+export const DEFAULT_ICON = {
+  info: 'circle-info',
+  success: 'circle-check',
+  primary: 'circle-check',
+  warning: 'circle-exclamation',
+  error: 'circle-xmark',
+  danger: 'circle-xmark'
+}

@@ -1,6 +1,17 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["src/index.ts", "src/components/**/*", "src/hooks/**/*","src/utils/*","src/utils/**/*"],
+  "include": [
+    "src/index.ts",
+    "src/components/**/*",
+    "src/hooks/**/*",
+    "src/utils/*",
+    "src/utils/**/*",
+    "src/constants/*",
+    "src/directives/*",
+    "src/directives/**/*",
+    "src/locale/*",
+    "src/locale/**/*",
+  ],
   "exclude": [
     "src/**/__tests__/*",
     "src/components/**/*.test.ts",
@@ -8,14 +19,15 @@
     "src/components/**/*.spec.ts",
     "src/components/**/*.tsx"
   ],
-  
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@vue/shared": ["./node_modules/@vue/shared"]
+    },
+    "types": ["node"]
   }
 }

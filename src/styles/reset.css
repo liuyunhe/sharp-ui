@@ -86,3 +86,7 @@ hr {
   border: 0;
   border-top: 1px solid var(--s-border-color-lighter);
 }
+
+.s-popup-parent--hidden{
+  overflow: hidden;
+}

@@ -5,6 +5,7 @@ export interface AlertProps {
   type?: AlertType
   effect?: 'dark' | 'light'
   closeable?: boolean
+  showIcon?: boolean
 }
 
 export interface AlertEvents {

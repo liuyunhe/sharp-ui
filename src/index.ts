@@ -16,6 +16,7 @@ import Row from '@/components/Row'
 import Col from '@/components/Col'
 import Link from '@/components/Link'
 import { Container, Aside, Footer, Header, Main } from '@/components/Container'
+import createMessageBox from '@/components/MessageBox'
 
 
 import './styles/index.css'
@@ -43,7 +44,8 @@ const components = [
   Aside,
   Footer,
   Header,
-  Main
+  Main,
+  
 ]
 
 const install = (app: App) => {
@@ -76,7 +78,8 @@ export {
   Header,
   Main,
   createMessage,
-  closeMessageAll
+  closeMessageAll,
+  createMessageBox
 }
 
 export * from './components/Alert'
@@ -94,6 +97,7 @@ export * from './components/Row'
 export * from './components/Col'
 export * from './components/Link'
 export * from './components/Container'
+export * from './components/MessageBox'
 
 export default {
   install
