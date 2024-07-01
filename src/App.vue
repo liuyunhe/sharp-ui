@@ -1,7 +1,7 @@
 <template>
   <header>
     <div style="margin-bottom: 20px; width: 100%">
-      <Alert ref="alertRef" content="成功提示的文案" type="success" effect="dark"> </Alert>
+      <Alert ref="alertRef" content="成功提示的文案" type="success" show-icon> </Alert>
       <Button type="primary" @click="openAlert">打开Alert</Button>
       <Button @click="closeAlert">关闭Alert</Button>
     </div>
@@ -36,7 +36,9 @@
     </Col>
   </Row>
   <div style="margin-bottom: 20px">
-    <Link underline icon="pen" type="danger" href="https://www.baidu.com" target="_blank">测试</Link>
+    <Link underline icon="pen" type="danger" href="https://www.baidu.com" target="_blank"
+      >测试</Link
+    >
   </div>
   <div style="margin-bottom: 20px">
     <Button type="primary" @click="open">打开Tooltip</Button>
@@ -85,7 +87,7 @@
   </div>
   <main>
     <div style="margin-bottom: 20px">
-      <Button ref="buttonRef">默认按钮</Button>
+      <Button ref="buttonRef" @click="openMessageBox">默认按钮</Button>
       <Button type="primary">主要按钮</Button>
       <Button type="success">成功按钮</Button>
       <Button type="info">信息按钮</Button>
@@ -153,6 +155,7 @@
       </Collapse>
       {{ openedValue }}
     </div>
+    <!-- <Overlay></Overlay> -->
   </main>
 </template>
 
@@ -171,7 +174,6 @@ import Input from '@/components/Input/Input.vue'
 import Switch from '@/components/Switch/Switch.vue'
 import Select from '@/components/Select/Select.vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
-// import Message from '@/components/Message/Message.vue'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
 import Alert from '@/components/Alert/Alert.vue'
@@ -181,11 +183,37 @@ import Link from '@/components/Link/Link.vue'
 import { createMessage } from '@/components/Message/methods'
 import type { FormRules } from './components/Form/types'
 import type { AlertInstance } from './components/Alert/types'
+import createMessageBox from '@/components/MessageBox'
 
 const alertRef = ref<AlertInstance | null>(null)
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
 const dropdownRef = ref<DropdownInstance | null>(null)
+
+const openMessageBox = () => {
+  createMessageBox.confirm(
+    'proxy will permanently delete the file. Continue?',
+    'Warning',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: 'Cancel',
+      type:'info',
+      center:true
+    }
+  )
+    .then(() => {
+      createMessage({
+        type: 'success',
+        message: 'Delete completed'
+      })
+    })
+    .catch(() => {
+      createMessage({
+        type: 'info',
+        message: 'Delete canceled',
+      })
+    })
+}
 
 const openedValue = ref(['a'])
 
@@ -284,6 +312,7 @@ onMounted(() => {
     console.log('🚀 ~ onMounted ~ instance:', instance)
   })
   createMessage({ type: 'success', message: 'hello word', showClose: true })
+  createMessage({ type: 'info', message: 'hello word', showClose: true })
   createMessage({ type: 'danger', message: 'hello word', showClose: true })
   if (buttonRef.value) {
     console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
