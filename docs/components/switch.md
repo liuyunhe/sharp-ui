@@ -9,7 +9,7 @@ description: Switch 组件的文档
 
 ## 基础用法
 
-绑定 v-model 到一个 Boolean 类型的变量。 可以使用 **--s-switch-on-color** 属性与 **--s-switch-off-color** 属性来设置开关的背景色。
+绑定 v-model 到一个 Boolean 类型的变量。 可以使用 ``--s-switch-on-color`` 属性与 ``--s-switch-off-color`` 属性来设置开关的背景色。
 
 <preview path="../demo/Switch/Basic.vue" title="基础Switch" description="Switch 基础用例"></preview>
 

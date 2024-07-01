@@ -80,7 +80,8 @@ export default defineConfig({
             text: 'Notice',
             items: [
               { text: 'Alert 警告', link: '/components/alert' },
-              { text: 'Message 消息提示', link: '/components/message' }
+              { text: 'Message 消息提示', link: '/components/message' },
+              { text: 'MessageBox 消息弹框', link: '/components/messagebox' }
             ]
           },
           {
