@@ -121,6 +121,9 @@ devDependencies:
   vite:
     specifier: ^5.2.8
     version: 5.2.10(@types/node@20.12.7)
+  vite-plugin-compression:
+    specifier: ^0.5.1
+    version: 0.5.1(vite@5.2.10)
   vite-plugin-dts:
     specifier: ^3.9.1
     version: 3.9.1(@types/node@20.12.7)(typescript@5.4.5)(vite@5.2.10)
@@ -2978,6 +2981,15 @@ packages:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
+  /fs-extra@10.1.0:
+    resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.11
+      jsonfile: 6.1.0
+      universalify: 2.0.1
+    dev: true
+
   /fs-extra@11.2.0:
     resolution: {integrity: sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==}
     engines: {node: '>=14.14'}
@@ -4717,6 +4729,19 @@ packages:
       - sugarss
       - supports-color
       - terser
+    dev: true
+
+  /vite-plugin-compression@0.5.1(vite@5.2.10):
+    resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==}
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      chalk: 4.1.2
+      debug: 4.3.4
+      fs-extra: 10.1.0
+      vite: 5.2.10(@types/node@20.12.7)
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /vite-plugin-dts@3.9.1(@types/node@20.12.7)(typescript@5.4.5)(vite@5.2.10):
