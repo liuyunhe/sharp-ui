@@ -18,7 +18,6 @@ import Link from '@/components/Link'
 import { Container, Aside, Footer, Header, Main } from '@/components/Container'
 import createMessageBox from '@/components/MessageBox'
 
-
 import './styles/index.css'
 
 library.add(fas)
@@ -44,13 +43,17 @@ const components = [
   Aside,
   Footer,
   Header,
-  Main,
-  
+  Main
 ]
+
+const plugins = [createMessageBox]
 
 const install = (app: App) => {
   components.forEach((component) => {
     app.component(component.name!, component)
+  })
+  plugins.forEach((plugin) => {
+    app.use(plugin)
   })
 }
 
