@@ -93,7 +93,7 @@ message 属性虽然支持传入 HTML 片段，但是在网站上动态渲染任
 
 ## 全局方法
 
-如果你完整引入了 Element，它会为 app.config.globalProperties 添加如下全局方法：$msgbox、 $alert、 $confirm 和 $prompt。 因此在 Vue 实例中可以采用本页面中的方式来调用MessageBox。 参数如下：
+如果你完整引入了``sharp-ui``，它会为 app.config.globalProperties 添加如下全局方法：$msgbox、 $alert、 $confirm 和 $prompt。 因此在 Vue 实例中可以采用本页面中的方式来调用MessageBox。 参数如下：
 
 - $msgbox(options)
 - $alert(message, title, options) 或 $alert(message, options)

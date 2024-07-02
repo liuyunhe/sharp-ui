@@ -45,6 +45,11 @@ export default defineConfig({
             return 'index.css'
           }
           return chunkInfo.name as string
+        },
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
         }
       }
     }
