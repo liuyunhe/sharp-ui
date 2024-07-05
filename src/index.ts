@@ -9,6 +9,8 @@ import Form, { FormItem } from '@/components/Form'
 import Icon from '@/components/Icon'
 import Message, { createMessage, closeAll as closeMessageAll } from '@/components/Message'
 import Input from '@/components/Input'
+import InputNumber from '@/components/InputNumber'
+import Radio from '@/components/Radio'
 import Select from '@/components/Select'
 import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
@@ -33,6 +35,8 @@ const components = [
   Icon,
   Message,
   Input,
+  InputNumber,
+  Radio,
   Select,
   Switch,
   Tooltip,
@@ -69,6 +73,8 @@ export {
   Icon,
   Message,
   Input,
+  InputNumber,
+  Radio,
   Select,
   Switch,
   Tooltip,
@@ -93,6 +99,8 @@ export * from './components/Form'
 export * from './components/Icon'
 export * from './components/Message'
 export * from './components/Input'
+export * from './components/InputNumber'
+export * from './components/Radio'
 export * from './components/Select'
 export * from './components/Switch'
 export * from './components/Tooltip'
