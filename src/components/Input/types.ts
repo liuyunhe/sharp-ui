@@ -1,3 +1,5 @@
+import type { ComponentSize } from '@/constants'
+
 /**
  * InputProps 定义了输入框组件的props
  * @typeParam type 输入框类型，如"text"、"number"等，默认为字符串类型
@@ -14,8 +16,8 @@
  */
 export interface InputProps {
   type?: string // 输入框类型，如"text"、"number"等
-  modelValue: string | null // 输入框的值
-  size?: 'large' | 'small' // 输入框大小，可选值为'large'或'small'
+  modelValue: string | number | null // 输入框的值
+  size?: ComponentSize // 输入框大小，可选值为'large'或'small'
   disabled?: boolean // 是否禁用输入框
   clearable?: boolean // 是否允许清空输入框的内容
   showPassword?: boolean // 是否显示密码类型输入框
@@ -36,9 +38,9 @@ export interface InputProps {
  * @event clear 输入框内容被清空时触发。无事件参数。
  */
 export interface InputEmits {
-  (e: 'update:modelValue', value: string | null): void // 当modelValue更新时触发，用于更新父组件绑定的值
-  (e: 'input', value: string | null): void // 输入框值发生变化时触发
-  (e: 'change', value: string | null): void // 输入框失去焦点且值发生变化时触发
+  (e: 'update:modelValue', value: string): void // 当modelValue更新时触发，用于更新父组件绑定的值
+  (e: 'input', value: string): void // 输入框值发生变化时触发
+  (e: 'change', value: string): void // 输入框失去焦点且值发生变化时触发
   (e: 'focus', value: FocusEvent): void // 输入框获得焦点时触发
   (e: 'blur', value: FocusEvent): void // 输入框失去焦点时触发
   (e: 'clear'): void // 输入框内容被清空时触发
@@ -50,4 +52,7 @@ export interface InputEmits {
  */
 export interface InputInstance {
   ref: HTMLInputElement | HTMLTextAreaElement // 输入框的引用，可能是input或textarea元素
+  input: HTMLInputElement | HTMLTextAreaElement // 输入框的引用，可能是input或textarea元素
+  focus: () => Promise<void> // 使输入框获得焦点
+  blur: () => void // 使输入框失去焦点
 }
