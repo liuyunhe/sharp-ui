@@ -123,7 +123,7 @@
   <main>
     <div style="margin-bottom: 20px">
       <Button ref="buttonRef" @click="openMessageBox">默认按钮</Button>
-      <Button type="primary">主要按钮</Button>
+      <Button type="primary" @click="dialogFormVisible = true">主要按钮</Button>
       <Button type="success">成功按钮</Button>
       <Button type="info">信息按钮</Button>
       <Button type="warning">警告按钮</Button>
@@ -192,6 +192,32 @@
     </div>
     <!-- <Overlay></Overlay> -->
   </main>
+  <Dialog v-model="dialogFormVisible" title="Shipping address" width="500">
+    <Form :model="model" :rules="rules" ref="formRef">
+      <FormItem label="the email" prop="email">
+        <template #default="{ validate }">
+          <Input v-model="model.email" />
+          <Button @click.prevent="() => validate()" style="margin-top: 10px">validate email</Button>
+        </template>
+      </FormItem>
+      <FormItem label="the password" prop="password">
+        <Input type="password" v-model="model.password" />
+      </FormItem>
+      <FormItem prop="confirmPwd" label="confirm password">
+        <Input v-model="model.confirmPwd" type="password" />
+      </FormItem>
+      <div :style="{ textAlign: 'center' }">
+        <Button type="primary" @click.prevent="submit">Submit</Button>
+        <Button @click.prevent="reset">Reset</Button>
+      </div>
+    </Form>
+    <template #footer>
+      <div class="dialog-footer">
+        <Button @click="dialogFormVisible = false">Cancel</Button>
+        <Button type="primary" @click="dialogFormVisible = false"> Confirm </Button>
+      </div>
+    </template>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
@@ -201,6 +227,7 @@ import Icon from './components/Icon/Icon.vue'
 import SRadio, { SRadioGroup, SRadioButton } from './components/Radio'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import CollapseItem from '@/components/Collapse/CollapseItem.vue'
+import Dialog from '@/components/Dialog'
 import type { ButtonInstance } from './components/Button/types'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types'
@@ -251,6 +278,8 @@ const openMessageBox = () => {
 }
 
 const openedValue = ref(['a'])
+
+const dialogFormVisible = ref(false)
 
 const radio = ref(null)
 
