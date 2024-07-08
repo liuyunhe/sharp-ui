@@ -6,6 +6,7 @@
 @import '../components/Icon/style.css';
 @import '../components/Tooltip/style.css';
 @import '../components/Dropdown/style.css';
+@import '../components/Dialog/style.css';
 @import '../components/Message/style.css';
 @import '../components/Input/style.css';
 @import '../components/Checkbox/style.css';
@@ -17,6 +18,7 @@
 @import '../components/Row/style.css';
 @import '../components/Col/style.css';
 @import '../components/Link/style.css';
+@import '../components/Loading/style.css';
 @import '../components/Container/style.css';
 @import '../components/Overlay/style.css';
 @import '../components/MessageBox/style.css';
