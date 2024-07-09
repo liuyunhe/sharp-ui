@@ -72,6 +72,7 @@ export default defineConfig({
             items: [
               { text: 'Checkbox 多选框', link: '/components/checkbox' },
               { text: 'Input 输入框', link: '/components/input' },
+              { text: 'InputNumber 数字输入框', link: '/components/inputnumber' },
               { text: 'Select 选择器', link: '/components/select' },
               { text: 'Switch 开关', link: '/components/switch' },
               { text: 'Form 表单', link: '/components/form' }
