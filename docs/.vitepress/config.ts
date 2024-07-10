@@ -70,6 +70,7 @@ export default defineConfig({
           {
             text: 'Form',
             items: [
+              { text: 'Radio 单选框', link: '/components/radio' },
               { text: 'Checkbox 多选框', link: '/components/checkbox' },
               { text: 'Input 输入框', link: '/components/input' },
               { text: 'InputNumber 数字输入框', link: '/components/inputnumber' },
