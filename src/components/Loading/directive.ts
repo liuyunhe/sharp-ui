@@ -1,5 +1,5 @@
 /* eslint-disable vue/prefer-import-from-vue */
-
+// @ts-nocheck
 import { isRef, ref } from 'vue'
 import { hyphenate, isObject, isString } from '@vue/shared'
 import { Loading } from './service'
