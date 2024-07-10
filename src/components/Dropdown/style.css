@@ -2,7 +2,7 @@
   --s-dropdown-menuItem-hover-fill: var(--s-color-primary-light-9);
   --s-dropdown-menuItem-hover-color: var(--s-color-primary);
   --s-dropdown-menuItem-disabled-color: var(--s-border-color-lighter);
-  --s-dropdown-menuItem-divided-color: var(--s-border-color-lighter);
+  --s-dropdown-menuItem-divided-color: #ebeef5;
 }
 .s-dropdown {
   display: inline-block;

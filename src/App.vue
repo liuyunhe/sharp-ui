@@ -36,6 +36,41 @@
     </Col>
   </Row>
   <div style="margin-bottom: 20px">
+    <s-checkbox-group v-model="checkList" :min="1" :max="2">
+      <s-checkbox label="Option A" value="Value A" border />
+      <s-checkbox label="Option B" value="Value B" border />
+      <s-checkbox label="Option C" value="Value C" border />
+      <s-checkbox label="disabled" value="Value disabled" disabled border />
+      <s-checkbox
+        label="selected and disabled"
+        value="Value selected and disabled"
+        disabled
+        border
+      />
+    </s-checkbox-group>
+  </div>
+  <div style="margin-bottom: 20px">
+    <InputNumber
+      size="large"
+      v-model="num"
+      @change="handleChange"
+      :precision="2"
+      :min="1"
+      :max="10"
+      aria-label="描述文字"
+      controls-position="right"
+      :step="0.01"
+    ></InputNumber>
+  </div>
+  <div style="margin-bottom: 20px">
+    <s-radio-group v-model="radio" size="large">
+      <s-radio-button value="1">备选项</s-radio-button>
+      <s-radio-button value="2">备选项</s-radio-button>
+      <s-radio-button value="3">备选项</s-radio-button>
+      <s-radio-button value="4">备选项</s-radio-button>
+    </s-radio-group>
+  </div>
+  <div style="margin-bottom: 20px">
     <Link underline icon="pen" type="danger" href="https://www.baidu.com" target="_blank"
       >测试</Link
     >
@@ -88,7 +123,7 @@
   <main>
     <div style="margin-bottom: 20px">
       <Button ref="buttonRef" @click="openMessageBox">默认按钮</Button>
-      <Button type="primary">主要按钮</Button>
+      <Button type="primary" @click="dialogFormVisible = true">主要按钮</Button>
       <Button type="success">成功按钮</Button>
       <Button type="info">信息按钮</Button>
       <Button type="warning">警告按钮</Button>
@@ -157,20 +192,50 @@
     </div>
     <!-- <Overlay></Overlay> -->
   </main>
+  <Dialog v-model="dialogFormVisible" title="Shipping address" width="500">
+    <Form :model="model" :rules="rules" ref="formRef">
+      <FormItem label="the email" prop="email">
+        <template #default="{ validate }">
+          <Input v-model="model.email" />
+          <Button @click.prevent="() => validate()" style="margin-top: 10px">validate email</Button>
+        </template>
+      </FormItem>
+      <FormItem label="the password" prop="password">
+        <Input type="password" v-model="model.password" />
+      </FormItem>
+      <FormItem prop="confirmPwd" label="confirm password">
+        <Input v-model="model.confirmPwd" type="password" />
+      </FormItem>
+      <div :style="{ textAlign: 'center' }">
+        <Button type="primary" @click.prevent="submit">Submit</Button>
+        <Button @click.prevent="reset">Reset</Button>
+      </div>
+    </Form>
+    <template #footer>
+      <div class="dialog-footer">
+        <Button @click="dialogFormVisible = false">Cancel</Button>
+        <Button type="primary" @click="dialogFormVisible = false"> Confirm </Button>
+      </div>
+    </template>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
 import { h, nextTick, onMounted, reactive, ref } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
+import SRadio, { SRadioGroup, SRadioButton } from './components/Radio'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import CollapseItem from '@/components/Collapse/CollapseItem.vue'
+import Dialog from '@/components/Dialog'
 import type { ButtonInstance } from './components/Button/types'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
+import SCheckbox, { SCheckboxGroup, SCheckboxButton } from './components/Checkbox'
 import Input from '@/components/Input/Input.vue'
+import InputNumber from '@/components/InputNumber/input-number.vue'
 import Switch from '@/components/Switch/Switch.vue'
 import Select from '@/components/Select/Select.vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
@@ -191,16 +256,13 @@ const tooltipRef = ref<TooltipInstance | null>(null)
 const dropdownRef = ref<DropdownInstance | null>(null)
 
 const openMessageBox = () => {
-  createMessageBox.confirm(
-    'proxy will permanently delete the file. Continue?',
-    'Warning',
-    {
+  createMessageBox
+    .confirm('proxy will permanently delete the file. Continue?', 'Warning', {
       confirmButtonText: '确定',
       cancelButtonText: 'Cancel',
-      type:'info',
-      center:true
-    }
-  )
+      type: 'info',
+      center: true
+    })
     .then(() => {
       createMessage({
         type: 'success',
@@ -210,12 +272,27 @@ const openMessageBox = () => {
     .catch(() => {
       createMessage({
         type: 'info',
-        message: 'Delete canceled',
+        message: 'Delete canceled'
       })
     })
 }
 
 const openedValue = ref(['a'])
+
+const dialogFormVisible = ref(false)
+
+const radio = ref(null)
+
+const num = ref(1)
+
+const handleChange = (value: number | undefined) => {
+  console.log(value)
+}
+
+const checked1 = ref(true)
+const checked2 = ref(false)
+
+const checkList = ref(['Value selected and disabled', 'Value A'])
 
 const size = ref<any>('3x')
 

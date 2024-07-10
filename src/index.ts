@@ -5,16 +5,20 @@ import Alert from '@/components/Alert'
 import Button from '@/components/Button'
 import Collapse, { CollapseItem } from '@/components/Collapse'
 import Dropdown from '@/components/Dropdown'
+import Dialog from '@/components/Dialog'
 import Form, { FormItem } from '@/components/Form'
 import Icon from '@/components/Icon'
 import Message, { createMessage, closeAll as closeMessageAll } from '@/components/Message'
 import Input from '@/components/Input'
+import InputNumber from '@/components/InputNumber'
+import Radio from '@/components/Radio'
 import Select from '@/components/Select'
 import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
 import Row from '@/components/Row'
 import Col from '@/components/Col'
 import Link from '@/components/Link'
+import Loading from '@/components/Loading'
 import { Container, Aside, Footer, Header, Main } from '@/components/Container'
 import createMessageBox from '@/components/MessageBox'
 
@@ -28,11 +32,14 @@ const components = [
   Collapse,
   CollapseItem,
   Dropdown,
+  Dialog,
   Form,
   FormItem,
   Icon,
   Message,
   Input,
+  InputNumber,
+  Radio,
   Select,
   Switch,
   Tooltip,
@@ -46,7 +53,7 @@ const components = [
   Main
 ]
 
-const plugins = [createMessageBox]
+const plugins = [createMessageBox, Loading]
 
 const install = (app: App) => {
   components.forEach((component) => {
@@ -64,11 +71,14 @@ export {
   Collapse,
   CollapseItem,
   Dropdown,
+  Dialog,
   Form,
   FormItem,
   Icon,
   Message,
   Input,
+  InputNumber,
+  Radio,
   Select,
   Switch,
   Tooltip,
@@ -93,6 +103,8 @@ export * from './components/Form'
 export * from './components/Icon'
 export * from './components/Message'
 export * from './components/Input'
+export * from './components/InputNumber'
+export * from './components/Radio'
 export * from './components/Select'
 export * from './components/Switch'
 export * from './components/Tooltip'
@@ -101,6 +113,8 @@ export * from './components/Col'
 export * from './components/Link'
 export * from './components/Container'
 export * from './components/MessageBox'
+export * from './components/Loading'
+export * from './components/Dialog'
 
 export default {
   install

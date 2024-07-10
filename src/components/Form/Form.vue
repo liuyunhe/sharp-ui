@@ -13,7 +13,7 @@ import type {
   FormValidateFailure,
   FormInstance
 } from './types'
-import { formContextKey } from './types'
+import { formContextKey } from './constants'
 
 // 定义组件属性
 const props = defineProps<FormProps>()
