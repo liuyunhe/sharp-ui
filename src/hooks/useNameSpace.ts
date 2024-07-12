@@ -64,7 +64,7 @@ export const useNamespace = (block: string, namespaceOverrides?: Ref<string | un
   }
 
   // for css var
-  // --el-xxx: value;
+  // --s-xxx: value;
   const cssVar = (object: Record<string, string>) => {
     const styles: Record<string, string> = {}
     for (const key in object) {
