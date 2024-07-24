@@ -1,7 +1,7 @@
 import { onMounted, onUnmounted, type Ref } from 'vue'
 
 /**
- * 使用自定义指令v-click-outside实现点击外部区域触发回调函数的功能。
+ * 实现点击外部区域触发回调函数的功能。
  *
  * @param elementRef 组件内部元素的引用，用于判断点击事件是否发生在该元素内部。
  * @param callback 当点击发生在元素外部时调用的回调函数。
