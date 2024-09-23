@@ -221,7 +221,7 @@
 </template>
 
 <script setup lang="ts">
-import { h, nextTick, onMounted, reactive, ref } from 'vue'
+import { getCurrentInstance, h, nextTick, onMounted, reactive, ref, type ComponentPublicInstance } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
 import SRadio, { SRadioGroup, SRadioButton } from './components/Radio'
@@ -281,7 +281,7 @@ const openedValue = ref(['a'])
 
 const dialogFormVisible = ref(false)
 
-const radio = ref(null)
+const radio = ref()
 
 const num = ref(1)
 
@@ -380,6 +380,9 @@ const closeAlert = () => {
 }
 
 onMounted(() => {
+  const vm = getCurrentInstance()
+  console.log('🚀 ~ onMounted ~ :', vm)
+  console.log('🚀 ~ onMounted ~ alertRef:', alertRef.value)
   const instance = createMessage({
     type: 'warning',
     message: 'hello word',
@@ -392,7 +395,7 @@ onMounted(() => {
   createMessage({ type: 'info', message: 'hello word', showClose: true })
   createMessage({ type: 'danger', message: 'hello word', showClose: true })
   if (buttonRef.value) {
-    console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
+    console.log('🚀 ~ onMounted ~ buttonRef.value.$el:', buttonRef.value.$el)
     console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
   }
   setTimeout(() => {
