@@ -4,6 +4,12 @@ import { isWindow } from '../types'
 import { cAF, rAF } from '../raf'
 import { getStyle } from './style'
 
+/**
+ * 判断元素是否允许滚动。
+ * @param el 要检查的元素
+ * @param isVertical 是否为垂直滚动，默认为undefined，表示不限制滚动方向
+ * @returns 如果元素允许滚动，则返回true；否则返回false
+ */
 export const isScroll = (el: HTMLElement, isVertical?: boolean): boolean => {
   if (!isClient) return false
 
@@ -18,6 +24,12 @@ export const isScroll = (el: HTMLElement, isVertical?: boolean): boolean => {
   return ['scroll', 'auto', 'overlay'].some((s) => overflow.includes(s))
 }
 
+/**
+ * 获取元素的滚动容器。
+ * @param el 要检查的元素
+ * @param isVertical 是否为垂直滚动，默认为undefined，表示不限制滚动方向
+ * @returns 滚动容器，可能是Window或HTMLElement；如果没有滚动容器，则返回undefined
+ */
 export const getScrollContainer = (
   el: HTMLElement,
   isVertical?: boolean
@@ -37,6 +49,11 @@ export const getScrollContainer = (
   return parent
 }
 
+/**
+ * 计算滚动条的宽度。
+ * @param namespace 类名前缀，用于创建测试元素
+ * @returns 滚动条的宽度
+ */
 let scrollBarWidth: number
 export const getScrollBarWidth = (namespace: string): number => {
   if (!isClient) return 0
@@ -64,6 +81,11 @@ export const getScrollBarWidth = (namespace: string): number => {
   return scrollBarWidth
 }
 
+/**
+ * 将元素滚动到其容器的顶部。
+ * @param container 元素的容器
+ * @param selected 要滚动到顶部的元素
+ */
 /**
  * Scroll with in the container element, positioning the **selected** element at the top
  * of the container
@@ -103,6 +125,14 @@ export function scrollIntoView(
   }
 }
 
+/**
+ * 平滑滚动到指定位置。
+ * @param container 滚动容器，可以是HTMLElement或Window
+ * @param from 起始位置
+ * @param to 目标位置
+ * @param duration 滚动持续时间
+ * @param callback 滚动完成后的回调函数
+ */
 export function animateScrollTo(
   container: HTMLElement | Window,
   from: number,
@@ -142,6 +172,12 @@ export function animateScrollTo(
   }
 }
 
+/**
+ * 获取滚动元素。
+ * @param target 目标元素
+ * @param container 滚动容器，可以是HTMLElement或Window
+ * @returns 滚动元素
+ */
 export const getScrollElement = (
   target: HTMLElement,
   container: HTMLElement | Window
@@ -152,6 +188,11 @@ export const getScrollElement = (
   return container
 }
 
+/**
+ * 获取滚动位置。
+ * @param container 滚动容器，可以是HTMLElement或Window
+ * @returns 滚动位置
+ */
 export const getScrollTop = (container: HTMLElement | Window) => {
   if (isWindow(container)) {
     return window.scrollY
