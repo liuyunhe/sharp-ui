@@ -1,4 +1,5 @@
 export * from './useAria'
+export * from './useAttrs'
 export * from './useClickOutside'
 export * from './useDeprecated'
 export * from './useEventListener'
