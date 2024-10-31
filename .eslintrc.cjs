@@ -14,5 +14,6 @@ module.exports = {
   },
   rules: {
     'vue/multi-word-component-names': 0,
+    'vue/prefer-import-from-vue':0
   }
 }
