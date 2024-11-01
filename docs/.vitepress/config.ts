@@ -25,6 +25,23 @@ export default defineConfig({
       alias: {
         '@': fileURLToPath(new URL('../../src', import.meta.url))
       }
+    },
+    build: {
+      terserOptions: {
+        compress: {
+          drop_console: process.env.NODE_ENV === 'production' ? true : false,
+          drop_debugger: process.env.NODE_ENV === 'production' ? true : false
+        }
+      },
+      rollupOptions: {
+        treeshake: true, // 开启 Tree Shaking，消除未使用的代码，减小最终的包大小
+        output: {
+          manualChunks: {
+            vitepress: ['vitepress'] // 将 VitePress 相关的代码打包到一个单独的 chunk 中
+          }
+        }
+      },
+      chunkSizeWarningLimit: 2000
     }
   },
   themeConfig: {
