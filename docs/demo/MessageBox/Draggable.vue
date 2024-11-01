@@ -6,7 +6,6 @@
 <script setup lang="ts">
 import Button from '@/components/Button'
 import createMessageBox from '@/components/MessageBox'
-import type { Action } from '@/components/MessageBox'
 import { createMessage } from '@/components/Message'
 
 const open = () => {

@@ -10,9 +10,6 @@ import InputNumber from '@/components/InputNumber'
 const num1 = ref(1)
 const num2 = ref(1)
 const num3 = ref(1)
-const handleChange = (val) => {
-  console.log(val)
-}
 </script>
 
 <style scoped>
