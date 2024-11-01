@@ -6,7 +6,6 @@
 </template>
 
 <script setup>
-import { h } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import { createMessage } from '@/components/Message/methods'
 

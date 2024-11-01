@@ -1,5 +1,4 @@
 // 导入类型定义
-import type { InjectionKey } from 'vue'
 import type { RuleItem, ValidateError, ValidateFieldsError } from 'async-validator'
 import type { ComponentSize } from '@/constants'
 

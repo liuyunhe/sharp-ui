@@ -1,4 +1,4 @@
-import { getCurrentInstance, ref, watch } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 import { useClipboard } from '@vueuse/core'
 import { createMessage } from '@/components/Message/methods'
 export const getCssVarName = (namespace: string, type: string) => {

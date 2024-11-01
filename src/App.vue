@@ -221,10 +221,10 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, h, nextTick, onMounted, reactive, ref, type ComponentPublicInstance } from 'vue'
+import { getCurrentInstance, h, nextTick, onMounted, reactive, ref } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
-import SRadio, { SRadioGroup, SRadioButton } from './components/Radio'
+import { SRadioGroup, SRadioButton } from './components/Radio'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import CollapseItem from '@/components/Collapse/CollapseItem.vue'
 import Dialog from '@/components/Dialog'
@@ -233,7 +233,7 @@ import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
-import SCheckbox, { SCheckboxGroup, SCheckboxButton } from './components/Checkbox'
+import SCheckbox, { SCheckboxGroup } from './components/Checkbox'
 import Input from '@/components/Input/Input.vue'
 import InputNumber from '@/components/InputNumber/input-number.vue'
 import Switch from '@/components/Switch/Switch.vue'
@@ -289,8 +289,6 @@ const handleChange = (value: number | undefined) => {
   console.log(value)
 }
 
-const checked1 = ref(true)
-const checked2 = ref(false)
 
 const checkList = ref(['Value selected and disabled', 'Value A'])
 
