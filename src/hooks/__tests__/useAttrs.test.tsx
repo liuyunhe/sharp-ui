@@ -28,7 +28,7 @@ const genComp = (
           <span {...attrs.value} />
         </div>
       )
-    },
+    }
   })
 }
 
@@ -43,7 +43,7 @@ const _mount = (Comp: ReturnType<typeof genComp>) => {
           {...{ [TEST_KEY]: TEST_VALUE }}
         />
       )
-    },
+    }
   })
 }
 
@@ -72,7 +72,8 @@ describe('useAttrs', () => {
     const wrapper = _mount(genComp())
     const span = wrapper.find('span')
 
-    await wrapper.setProps({ [TEST_KEY]: ANOTHER_TEST_VALUE })
+    // 使用类型断言
+    await wrapper.setProps({ [TEST_KEY]: ANOTHER_TEST_VALUE } as Record<string, string>)
     expect(span.attributes(TEST_KEY)).toBe(ANOTHER_TEST_VALUE)
   })
 
