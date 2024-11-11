@@ -72,6 +72,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "@popperjs/core": "^2.11.8",
+    "@vue/runtime-dom": "^3.5.12",
     "@vue/shared": "^3.4.27",
     "@vueuse/core": "^10.11.0",
     "async-validator": "^4.2.5",
