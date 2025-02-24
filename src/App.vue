@@ -124,8 +124,8 @@
     <div style="margin-bottom: 20px">
       <Button ref="buttonRef" @click="openMessageBox">默认按钮</Button>
       <Button type="primary" @click="dialogFormVisible = true">主要按钮</Button>
-      <Button type="success">成功按钮</Button>
-      <Button type="info">信息按钮</Button>
+      <Button type="success" @click='addA'>成功按钮</Button>
+      <Button type="info" @click="addB">信息按钮</Button>
       <Button type="warning">警告按钮</Button>
       <Button type="danger">危险按钮</Button>
     </div>
@@ -221,7 +221,7 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, h, nextTick, onMounted, reactive, ref } from 'vue'
+import { getCurrentInstance, h, nextTick, onMounted, reactive, ref, watchEffect } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
 import { SRadioGroup, SRadioButton } from './components/Radio'
@@ -254,6 +254,20 @@ const alertRef = ref<AlertInstance | null>(null)
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
 const dropdownRef = ref<DropdownInstance | null>(null)
+
+const a = ref(1)
+const b = ref(2)
+const addA = () => {
+  a.value += 1
+}
+const addB = () => {
+  b.value += 1
+}
+
+watchEffect(() => {
+  a.value = a.value + b.value
+  console.log(a.value)
+})
 
 const openMessageBox = () => {
   createMessageBox
