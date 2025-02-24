@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import dts from 'vite-plugin-dts'
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +15,12 @@ export default defineConfig({
       tsconfigPath: './tsconfig.build.json',
       outDir: 'dist/types',
       insertTypesEntry: true
+    }),
+    chunkSplitPlugin({
+      customSplitting: {
+        utils: [/src\/utils/],
+        hooks: [/src\/hooks/]
+      }
     })
   ],
   resolve: {
