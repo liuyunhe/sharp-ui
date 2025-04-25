@@ -249,6 +249,8 @@ import { createMessage } from '@/components/Message/methods'
 import type { FormRules } from './components/Form/types'
 import type { AlertInstance } from './components/Alert/types'
 import createMessageBox from '@/components/MessageBox'
+import { readonly } from 'vue'
+import { shallowReadonly } from 'vue'
 
 const alertRef = ref<AlertInstance | null>(null)
 const buttonRef = ref<ButtonInstance | null>(null)
@@ -257,6 +259,8 @@ const dropdownRef = ref<DropdownInstance | null>(null)
 
 const a = ref(1)
 const b = ref(2)
+const d = shallowReadonly(reactive({ a: {c:1}, b: 2 }))
+d.a.c = 2
 const addA = () => {
   a.value += 1
 }
