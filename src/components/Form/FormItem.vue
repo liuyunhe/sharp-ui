@@ -25,7 +25,7 @@
 import { inject, computed, reactive, provide, onMounted, onUnmounted } from 'vue'
 import Schema from 'async-validator'
 import { isNil } from 'lodash-es'
-import { formContextKey, formItemContextKey } from './types'
+import { formContextKey, formItemContextKey } from './constants'
 import type {
   FormItemProps,
   FormValidateFailure,

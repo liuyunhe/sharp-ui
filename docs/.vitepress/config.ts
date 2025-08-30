@@ -25,6 +25,23 @@ export default defineConfig({
       alias: {
         '@': fileURLToPath(new URL('../../src', import.meta.url))
       }
+    },
+    build: {
+      terserOptions: {
+        compress: {
+          drop_console: process.env.NODE_ENV === 'production' ? true : false,
+          drop_debugger: process.env.NODE_ENV === 'production' ? true : false
+        }
+      },
+      rollupOptions: {
+        treeshake: true, // 开启 Tree Shaking，消除未使用的代码，减小最终的包大小
+        output: {
+          manualChunks: {
+            vitepress: ['vitepress'] // 将 VitePress 相关的代码打包到一个单独的 chunk 中
+          }
+        }
+      },
+      chunkSizeWarningLimit: 2000
     }
   },
   themeConfig: {
@@ -38,26 +55,63 @@ export default defineConfig({
     },
     nav: [
       { text: '首页', link: '/' },
-      { text: '快速开始', link: '/markdown-examples' },
-      { text: '指南', link: '/api-examples' }
+      { text: '指南', link: '/guide/design' },
+      { text: '快速开始', link: '/guide/quickstart' }
     ],
     sidebar: [
       {
-        text: 'Examples1',
+        text: '开发指南',
+        collapsed: false,
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: '简介', link: '/guide/introduce' },
+          { text: '设计原则', link: '/guide/design' },
+          { text: '快速开始', link: '/guide/quickstart' }
         ]
       },
       {
-        text: 'Basic',
+        text: '组件',
+        collapsed: false,
         items: [
-          { text: 'Alert', link: '/components/alert' },
-          { text: 'Button', link: '/components/button' },
-          { text: 'Input', link: '/components/input' },
-          { text: 'Switch', link: '/components/switch' },
-          { text: 'Select', link: '/components/select' },
-          { text: 'Form', link: '/components/form' }
+          {
+            text: 'Basic',
+            items: [
+              { text: 'Layout 布局', link: '/components/layout' },
+              { text: 'Container 布局容器', link: '/components/container' },
+              { text: 'Color 色彩', link: '/components/color' },
+              { text: 'Border 边框', link: '/components/border' },
+              { text: 'Button 按钮', link: '/components/button' },
+              { text: 'Icon 图标', link: '/components/icon' },
+              { text: 'Link 文字链接', link: '/components/link' }
+            ]
+          },
+          {
+            text: 'Form',
+            items: [
+              { text: 'Radio 单选框', link: '/components/radio' },
+              { text: 'Checkbox 多选框', link: '/components/checkbox' },
+              { text: 'Input 输入框', link: '/components/input' },
+              { text: 'InputNumber 数字输入框', link: '/components/inputnumber' },
+              { text: 'Select 选择器', link: '/components/select' },
+              { text: 'Switch 开关', link: '/components/switch' },
+              { text: 'Form 表单', link: '/components/form' }
+            ]
+          },
+          {
+            text: 'Notice',
+            items: [
+              { text: 'Alert 警告', link: '/components/alert' },
+              { text: 'Message 消息提示', link: '/components/message' },
+              { text: 'MessageBox 消息弹框', link: '/components/messagebox' }
+            ]
+          },
+          {
+            text: 'Navigation',
+            items: [{ text: 'Dropdown 下拉菜单', link: '/components/dropdown' }]
+          },
+          {
+            text: 'Others',
+            items: [{ text: 'Collapse 折叠面板', link: '/components/collapse' }]
+          }
         ]
       }
     ],
@@ -67,7 +121,7 @@ export default defineConfig({
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2022-present liuyunhe'
+      copyright: 'Copyright © 2024-present liuyunhe'
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/liuyunhe/sharp-ui' }]
   }

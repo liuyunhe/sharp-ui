@@ -20,6 +20,14 @@ Alert 组件提供了两个不同的主题：`light`和`dark`。通过设置`eff
 
 <preview path="../demo/Alert/Theme.vue" title="主题" description="Alert 组件提供了两个不同的主题：`light`和`dark`。" />
 
+## 使用图标
+
+你可以通过为 Alert 组件添加图标来提高可读性。
+
+通过设置 ``show-icon`` 属性来显示 Alert 的 icon，这能更有效地向用户展示你的显示意图。
+
+<preview path="../demo/Alert/Icon.vue" title="基础用法" description="Alert组件的基础用法" />
+
 ## Alert Attributes
 
 | 参数        | 说明                               | 类型    | 可选值                     | 默认值 |

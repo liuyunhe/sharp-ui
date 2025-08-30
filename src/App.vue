@@ -1,15 +1,9 @@
 <template>
   <header>
-    <div style="margin-bottom: 20px;width: 100%;">
-      <Alert
-        ref="alertRef"
-        content="成功提示的文案"
-        type="success"
-        effect="dark"
-        >
-      </Alert>
-      <Button type="primary" @click="openAlert">打开Alert</BUtton>
-      <Button @click="closeAlert">关闭Alert</BUtton>
+    <div style="margin-bottom: 20px; width: 100%">
+      <Alert ref="alertRef" content="成功提示的文案" type="success" show-icon> </Alert>
+      <Button type="primary" @click="openAlert">打开Alert</Button>
+      <Button @click="closeAlert">关闭Alert</Button>
     </div>
     <div style="margin-bottom: 20px">
       <Tooltip
@@ -27,6 +21,60 @@
       </Tooltip>
     </div>
   </header>
+  <Row :gutter="20" justify="space-evenly" align="middle" style="height: 100px">
+    <Col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+      <div style="background: #d3dce6">123</div>
+    </Col>
+    <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
+      <div style="background: #d3dce6">456</div>
+    </Col>
+    <Col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
+      <div style="background: #d3dce6">789</div>
+    </Col>
+    <Col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+      <div style="background: #d3dce6">101112</div>
+    </Col>
+  </Row>
+  <div style="margin-bottom: 20px">
+    <s-checkbox-group v-model="checkList" :min="1" :max="2">
+      <s-checkbox label="Option A" value="Value A" border />
+      <s-checkbox label="Option B" value="Value B" border />
+      <s-checkbox label="Option C" value="Value C" border />
+      <s-checkbox label="disabled" value="Value disabled" disabled border />
+      <s-checkbox
+        label="selected and disabled"
+        value="Value selected and disabled"
+        disabled
+        border
+      />
+    </s-checkbox-group>
+  </div>
+  <div style="margin-bottom: 20px">
+    <InputNumber
+      size="large"
+      v-model="num"
+      @change="handleChange"
+      :precision="2"
+      :min="1"
+      :max="10"
+      aria-label="描述文字"
+      controls-position="right"
+      :step="0.01"
+    ></InputNumber>
+  </div>
+  <div style="margin-bottom: 20px">
+    <s-radio-group v-model="radio" size="large">
+      <s-radio-button value="1">备选项</s-radio-button>
+      <s-radio-button value="2">备选项</s-radio-button>
+      <s-radio-button value="3">备选项</s-radio-button>
+      <s-radio-button value="4">备选项</s-radio-button>
+    </s-radio-group>
+  </div>
+  <div style="margin-bottom: 20px">
+    <Link underline icon="pen" type="danger" href="https://www.baidu.com" target="_blank"
+      >测试</Link
+    >
+  </div>
   <div style="margin-bottom: 20px">
     <Button type="primary" @click="open">打开Tooltip</Button>
     <Button @click="close">关闭Tooltip</Button>
@@ -74,10 +122,10 @@
   </div>
   <main>
     <div style="margin-bottom: 20px">
-      <Button ref="buttonRef">默认按钮</Button>
-      <Button type="primary">主要按钮</Button>
-      <Button type="success">成功按钮</Button>
-      <Button type="info">信息按钮</Button>
+      <Button ref="buttonRef" @click="openMessageBox">默认按钮</Button>
+      <Button type="primary" @click="dialogFormVisible = true">主要按钮</Button>
+      <Button type="success" @click='addA'>成功按钮</Button>
+      <Button type="info" @click="addB">信息按钮</Button>
       <Button type="warning">警告按钮</Button>
       <Button type="danger">危险按钮</Button>
     </div>
@@ -142,38 +190,125 @@
       </Collapse>
       {{ openedValue }}
     </div>
+    <!-- <Overlay></Overlay> -->
   </main>
+  <Dialog v-model="dialogFormVisible" title="Shipping address" width="500">
+    <Form :model="model" :rules="rules" ref="formRef">
+      <FormItem label="the email" prop="email">
+        <template #default="{ validate }">
+          <Input v-model="model.email" />
+          <Button @click.prevent="() => validate()" style="margin-top: 10px">validate email</Button>
+        </template>
+      </FormItem>
+      <FormItem label="the password" prop="password">
+        <Input type="password" v-model="model.password" />
+      </FormItem>
+      <FormItem prop="confirmPwd" label="confirm password">
+        <Input v-model="model.confirmPwd" type="password" />
+      </FormItem>
+      <div :style="{ textAlign: 'center' }">
+        <Button type="primary" @click.prevent="submit">Submit</Button>
+        <Button @click.prevent="reset">Reset</Button>
+      </div>
+    </Form>
+    <template #footer>
+      <div class="dialog-footer">
+        <Button @click="dialogFormVisible = false">Cancel</Button>
+        <Button type="primary" @click="dialogFormVisible = false"> Confirm </Button>
+      </div>
+    </template>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
-import { h, nextTick, onMounted, reactive, ref } from 'vue'
+import { getCurrentInstance, h, nextTick, onMounted, reactive, ref, watchEffect } from 'vue'
 import Button from '@/components/Button/Button.vue'
 import Icon from './components/Icon/Icon.vue'
+import { SRadioGroup, SRadioButton } from './components/Radio'
 import Collapse from '@/components/Collapse/Collapse.vue'
 import CollapseItem from '@/components/Collapse/CollapseItem.vue'
+import Dialog from '@/components/Dialog'
 import type { ButtonInstance } from './components/Button/types'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types'
 import type { Options as PopperOptions } from '@popperjs/core'
 import Dropdown from '@/components/Dropdown/Dropdown'
+import SCheckbox, { SCheckboxGroup } from './components/Checkbox'
 import Input from '@/components/Input/Input.vue'
+import InputNumber from '@/components/InputNumber/input-number.vue'
 import Switch from '@/components/Switch/Switch.vue'
 import Select from '@/components/Select/Select.vue'
 import type { DropdownInstance, MenuOption } from '@/components/Dropdown/types'
-// import Message from '@/components/Message/Message.vue'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
 import Alert from '@/components/Alert/Alert.vue'
+import Row from '@/components/Row/Row.vue'
+import Col from '@/components/Col/Col.vue'
+import Link from '@/components/Link/Link.vue'
 import { createMessage } from '@/components/Message/methods'
 import type { FormRules } from './components/Form/types'
 import type { AlertInstance } from './components/Alert/types'
+import createMessageBox from '@/components/MessageBox'
+import { readonly } from 'vue'
+import { shallowReadonly } from 'vue'
 
 const alertRef = ref<AlertInstance | null>(null)
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
 const dropdownRef = ref<DropdownInstance | null>(null)
 
+const a = ref(1)
+const b = ref(2)
+const d = shallowReadonly(reactive({ a: {c:1}, b: 2 }))
+d.a.c = 2
+const addA = () => {
+  a.value += 1
+}
+const addB = () => {
+  b.value += 1
+}
+
+watchEffect(() => {
+  a.value = a.value + b.value
+  console.log(a.value)
+})
+
+const openMessageBox = () => {
+  createMessageBox
+    .confirm('proxy will permanently delete the file. Continue?', 'Warning', {
+      confirmButtonText: '确定',
+      cancelButtonText: 'Cancel',
+      type: 'info',
+      center: true
+    })
+    .then(() => {
+      createMessage({
+        type: 'success',
+        message: 'Delete completed'
+      })
+    })
+    .catch(() => {
+      createMessage({
+        type: 'info',
+        message: 'Delete canceled'
+      })
+    })
+}
+
 const openedValue = ref(['a'])
+
+const dialogFormVisible = ref(false)
+
+const radio = ref()
+
+const num = ref(1)
+
+const handleChange = (value: number | undefined) => {
+  console.log(value)
+}
+
+
+const checkList = ref(['Value selected and disabled', 'Value A'])
 
 const size = ref<any>('3x')
 
@@ -252,7 +387,7 @@ const menuOptions: MenuOption[] = [
   { key: 4, label: 'item4' }
 ]
 
-const openAlert = () => { 
+const openAlert = () => {
   alertRef.value?.show()
 }
 
@@ -261,6 +396,9 @@ const closeAlert = () => {
 }
 
 onMounted(() => {
+  const vm = getCurrentInstance()
+  console.log('🚀 ~ onMounted ~ :', vm)
+  console.log('🚀 ~ onMounted ~ alertRef:', alertRef.value)
   const instance = createMessage({
     type: 'warning',
     message: 'hello word',
@@ -270,9 +408,10 @@ onMounted(() => {
     console.log('🚀 ~ onMounted ~ instance:', instance)
   })
   createMessage({ type: 'success', message: 'hello word', showClose: true })
+  createMessage({ type: 'info', message: 'hello word', showClose: true })
   createMessage({ type: 'danger', message: 'hello word', showClose: true })
   if (buttonRef.value) {
-    console.log('🚀 ~ onMounted ~ buttonRef.value:', buttonRef.value)
+    console.log('🚀 ~ onMounted ~ buttonRef.value.$el:', buttonRef.value.$el)
     console.log('🚀 ~ onMounted ~ buttonRef.value.ref:', buttonRef.value.ref)
   }
   setTimeout(() => {

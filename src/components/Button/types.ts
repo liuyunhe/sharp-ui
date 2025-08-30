@@ -1,4 +1,5 @@
-import type { PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type Button from './Button.vue'
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info'
 export type ButtonSize = 'large' | 'small'
 export type NativeType = 'button' | 'submit' | 'reset'
@@ -18,7 +19,7 @@ export interface ButtonProps {
   icon?: string
   loading?: boolean
 }
-export interface ButtonInstance {
+export interface ButtonRefInstance {
   ref: HTMLButtonElement
 }
 export const buttonProps = {
@@ -40,4 +41,10 @@ export const buttonProps = {
   disabled: {
     type: Boolean
   }
+}
+
+export type ButtonInstance = ExtractPropTypes<typeof Button> & ButtonRefInstance
+
+export interface ButtonConfigContext {
+  autoInsertSpace?: boolean
 }

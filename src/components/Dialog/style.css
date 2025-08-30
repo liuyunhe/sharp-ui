@@ -1,0 +1,180 @@
+.s-dialog {
+    --s-dialog-width: 50%;
+    --s-dialog-margin-top: 15vh;
+    --s-dialog-bg-color: var(--s-bg-color);
+    --s-dialog-box-shadow: var(--s-box-shadow);
+    --s-dialog-title-font-size: var(--s-font-size-large);
+    --s-dialog-content-font-size: 14px;
+    --s-dialog-font-line-height: var(--s-font-line-height-primary);
+    --s-dialog-padding-primary: 16px;
+    --s-dialog-border-radius: var(--s-border-radius-small);
+    position: relative;
+    margin: var(--s-dialog-margin-top, 15vh) auto 50px;
+    background: var(--s-dialog-bg-color);
+    border-radius: var(--s-dialog-border-radius);
+    box-shadow: var(--s-dialog-box-shadow);
+    box-sizing: border-box;
+    padding: var(--s-dialog-padding-primary);
+    width: var(--s-dialog-width, 50%);
+    overflow-wrap: break-word
+}
+
+.s-dialog:focus {
+    outline: none!important
+}
+
+.s-dialog.is-align-center {
+    margin: auto
+}
+
+.s-dialog.is-fullscreen {
+    --s-dialog-width: 100%;
+    --s-dialog-margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
+    overflow: auto
+}
+
+.s-dialog__wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0
+}
+
+.s-dialog.is-draggable .s-dialog__header {
+    cursor: move;
+    user-select: none
+}
+
+.s-dialog__header {
+    padding-bottom: var(--s-dialog-padding-primary)
+}
+
+.s-dialog__header.show-close {
+    padding-right: calc(var(--s-dialog-padding-primary) + var(--s-message-close-size, 16px))
+}
+
+.s-dialog__headerbtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: var(--s-message-close-size, 16px)
+}
+
+.s-dialog__headerbtn .s-dialog__close {
+    color: var(--s-color-info);
+    font-size: inherit
+}
+
+.s-dialog__headerbtn:focus .s-dialog__close,.s-dialog__headerbtn:hover .s-dialog__close {
+    color: var(--s-color-primary)
+}
+
+.s-dialog__title {
+    line-height: var(--s-dialog-font-line-height);
+    font-size: var(--s-dialog-title-font-size);
+    color: var(--s-text-color-primary)
+}
+
+.s-dialog__body {
+    color: var(--s-text-color-regular);
+    font-size: var(--s-dialog-content-font-size)
+}
+
+.s-dialog__footer {
+    padding-top: var(--s-dialog-padding-primary);
+    text-align: right;
+    box-sizing: border-box
+}
+
+.s-dialog--center {
+    text-align: center
+}
+
+.s-dialog--center .s-dialog__body {
+    text-align: initial
+}
+
+.s-dialog--center .s-dialog__footer {
+    text-align: inherit
+}
+
+.s-overlay-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto
+}
+
+.dialog-fade-enter-active {
+    animation: modal-fade-in var(--s-transition-duration)
+}
+
+.dialog-fade-enter-active .s-overlay-dialog {
+    animation: dialog-fade-in var(--s-transition-duration)
+}
+
+.dialog-fade-leave-active {
+    animation: modal-fade-out var(--s-transition-duration)
+}
+
+.dialog-fade-leave-active .s-overlay-dialog {
+    animation: dialog-fade-out var(--s-transition-duration)
+}
+
+@keyframes dialog-fade-in {
+    0% {
+        transform: translate3d(0,-20px,0);
+        opacity: 0
+    }
+
+    to {
+        transform: translateZ(0);
+        opacity: 1
+    }
+}
+
+@keyframes dialog-fade-out {
+    0% {
+        transform: translateZ(0);
+        opacity: 1
+    }
+
+    to {
+        transform: translate3d(0,-20px,0);
+        opacity: 0
+    }
+}
+
+@keyframes modal-fade-in {
+    0% {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes modal-fade-out {
+    0% {
+        opacity: 1
+    }
+
+    to {
+        opacity: 0
+    }
+}

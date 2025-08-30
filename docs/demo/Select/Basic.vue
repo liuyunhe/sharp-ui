@@ -11,5 +11,10 @@ const options2 = [
 </script>
 <template>
   <Select v-model="test" placeholder="基础选择器，请选择" :options="options2" />
-  <h4>model-value: {{test}}</h4>
+  <h4 class="text">model-value: {{test}}</h4>
 </template>
+<style scoped>
+  .text {
+    margin: 10px;
+  }
+</style>

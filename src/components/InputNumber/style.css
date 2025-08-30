@@ -1,0 +1,153 @@
+.s-input-number {
+    position: relative;
+    display: inline-flex;
+    width: 150px;
+    line-height: 30px
+}
+
+.s-input-number .s-input__wrapper {
+    padding-left: 42px;
+    padding-right: 42px
+}
+
+.s-input-number .s-input__inner {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    text-align: center;
+    line-height: 1
+}
+
+.s-input-number .s-input__inner::-webkit-inner-spin-button,.s-input-number .s-input__inner::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none
+}
+
+.s-input-number__increase,.s-input-number__decrease {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    bottom: 1px;
+    width: 32px;
+    background: var(--s-fill-color-light);
+    color: var(--s-text-color-regular);
+    cursor: pointer;
+    font-size: 13px;
+    user-select: none
+}
+
+.s-input-number__increase:hover,.s-input-number__decrease:hover {
+    color: var(--s-color-primary)
+}
+
+.s-input-number__increase:hover~.s-input:not(.is-disabled) .s-input__wrapper,.s-input-number__decrease:hover~.s-input:not(.is-disabled) .s-input__wrapper {
+    box-shadow: 0 0 0 1px var(--s-input-focus-border-color, var(--s-color-primary)) inset
+}
+
+.s-input-number__increase.is-disabled,.s-input-number__decrease.is-disabled {
+    color: var(--s-disabled-text-color);
+    cursor: not-allowed
+}
+
+.s-input-number__increase {
+    right: 1px;
+    border-radius: 0 var(--s-border-radius-base) var(--s-border-radius-base) 0;
+    border-left: var(--s-border)
+}
+
+.s-input-number__decrease {
+    left: 1px;
+    border-radius: var(--s-border-radius-base) 0 0 var(--s-border-radius-base);
+    border-right: var(--s-border)
+}
+
+.s-input-number.is-disabled .s-input-number__increase,.s-input-number.is-disabled .s-input-number__decrease {
+    border-color: var(--s-disabled-border-color);
+    color: var(--s-disabled-border-color)
+}
+
+.s-input-number.is-disabled .s-input-number__increase:hover,.s-input-number.is-disabled .s-input-number__decrease:hover {
+    color: var(--s-disabled-border-color);
+    cursor: not-allowed
+}
+
+.s-input-number--large {
+    width: 180px;
+    line-height: 38px
+}
+
+.s-input-number--large .s-input-number__increase,.s-input-number--large .s-input-number__decrease {
+    width: 40px;
+    font-size: 14px
+}
+
+.s-input-number--large .s-input--large .s-input__wrapper {
+    padding-left: 47px;
+    padding-right: 47px
+}
+
+.s-input-number--small {
+    width: 120px;
+    line-height: 22px
+}
+
+.s-input-number--small .s-input-number__increase,.s-input-number--small .s-input-number__decrease {
+    width: 24px;
+    font-size: 12px
+}
+
+.s-input-number--small .s-input--small .s-input__wrapper {
+    padding-left: 31px;
+    padding-right: 31px
+}
+
+.s-input-number--small .s-input-number__increase [class*=s-icon],.s-input-number--small .s-input-number__decrease [class*=s-icon] {
+    transform: scale(.9)
+}
+
+.s-input-number.is-without-controls .s-input__wrapper {
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.s-input-number.is-controls-right .s-input__wrapper {
+    padding-left: 15px;
+    padding-right: 42px
+}
+
+.s-input-number.is-controls-right .s-input-number__increase,.s-input-number.is-controls-right .s-input-number__decrease {
+    --s-input-number-controls-height: 15px;
+    height: var(--s-input-number-controls-height);
+    line-height: var(--s-input-number-controls-height)
+}
+
+.s-input-number.is-controls-right .s-input-number__increase [class*=s-icon],.s-input-number.is-controls-right .s-input-number__decrease [class*=s-icon] {
+    transform: scale(.8)
+}
+
+.s-input-number.is-controls-right .s-input-number__increase {
+    bottom: auto;
+    left: auto;
+    border-radius: 0 var(--s-border-radius-base) 0 0;
+    border-bottom: var(--s-border)
+}
+
+.s-input-number.is-controls-right .s-input-number__decrease {
+    right: 1px;
+    top: auto;
+    left: auto;
+    border-right: none;
+    border-left: var(--s-border);
+    border-radius: 0 0 var(--s-border-radius-base) 0
+}
+
+.s-input-number.is-controls-right[class*=large] [class*=increase],.s-input-number.is-controls-right[class*=large] [class*=decrease] {
+    --s-input-number-controls-height: 19px
+}
+
+.s-input-number.is-controls-right[class*=small] [class*=increase],.s-input-number.is-controls-right[class*=small] [class*=decrease] {
+    --s-input-number-controls-height: 11px
+}

@@ -1,6 +1,6 @@
 // 导入类型定义
-import type { InjectionKey } from 'vue'
 import type { RuleItem, ValidateError, ValidateFieldsError } from 'async-validator'
+import type { ComponentSize } from '@/constants'
 
 /**
  * 表单项属性接口
@@ -33,6 +33,11 @@ export interface FormItemRule extends RuleItem {
  */
 export interface FormItemContext {
   prop: string
+  labelId?: string
+  inputIds?: string[]
+  size?: ComponentSize
+  addInputId?: (id: string) => void
+  removeInputId?: (id: string) => void
   validate: (trigger?: string) => Promise<any>
   resetField(): void
   clearValidate(): void
@@ -47,6 +52,10 @@ export interface FormItemContext {
  * @property {Function} clearValidate - 清除表单项验证状态的方法
  */
 export interface FormItemInstance {
+  labelId?: string
+  inputIds?: string[]
+  size?: ComponentSize
+  addInputId?: (id: string) => void
   validateStatus: ValidateStatusProp
   validate: (trigger?: string) => Promise<any>
   resetField(): void
@@ -69,6 +78,8 @@ export type FormRules = Record<string, FormItemRule[]>
 export interface FormProps {
   model: Record<string, any>
   rules: FormRules
+  disabled?: boolean
+  size?: ComponentSize
 }
 
 /**
@@ -120,6 +131,3 @@ export interface FormValidateFailure {
   fields: ValidateFieldsError
 }
 
-// 定义 Vue 依赖注入键
-export const formContextKey: InjectionKey<FormContext> = Symbol('formContextKey')
-export const formItemContextKey: InjectionKey<FormItemContext> = Symbol('formItemContextKey')
